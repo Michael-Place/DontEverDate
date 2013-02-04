@@ -131,8 +131,17 @@
 		E901F09816BF38CA005CB026 /* vec4.c in Sources */ = {isa = PBXBuildFile; fileRef = E901F09716BF38CA005CB026 /* vec4.c */; };
 		E901F09D16BF38CA005CB026 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F09C16BF38CA005CB026 /* main.m */; };
 		E901F0A016BF38CA005CB026 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F09F16BF38CA005CB026 /* AppDelegate.m */; };
-		E901F0A316BF38CA005CB026 /* HelloWorldLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0A216BF38CA005CB026 /* HelloWorldLayer.m */; };
+		E901F0A316BF38CA005CB026 /* GamePlayLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0A216BF38CA005CB026 /* GamePlayLayer.m */; };
 		E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0A516BF38CA005CB026 /* IntroLayer.m */; };
+		E901F0AE16BF3A07005CB026 /* Enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0AC16BF3A07005CB026 /* Enemy.png */; };
+		E901F0AF16BF3A07005CB026 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0AD16BF3A07005CB026 /* Player.png */; };
+		E901F0B416BF3B2E005CB026 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B316BF3B2E005CB026 /* Enemy.m */; };
+		E901F0BB16BF4467005CB026 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0BA16BF4024005CB026 /* GameOverLayer.m */; };
+		E901F0BC16BF446D005CB026 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B616BF3C1F005CB026 /* LevelManager.m */; };
+		E901F0BD16BF447E005CB026 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B816BF3C49005CB026 /* Level.m */; };
+		E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BE16BF46D9005CB026 /* BruteCupid.png */; };
+		E901F0C116BF46D9005CB026 /* Cupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BF16BF46D9005CB026 /* Cupid.png */; };
+		E901F0C416BF4946005CB026 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0C316BF4946005CB026 /* Projectile.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -394,10 +403,23 @@
 		E901F09C16BF38CA005CB026 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		E901F09E16BF38CA005CB026 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		E901F09F16BF38CA005CB026 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		E901F0A116BF38CA005CB026 /* HelloWorldLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = HelloWorldLayer.h; sourceTree = "<group>"; };
-		E901F0A216BF38CA005CB026 /* HelloWorldLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = HelloWorldLayer.m; sourceTree = "<group>"; };
+		E901F0A116BF38CA005CB026 /* GamePlayLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GamePlayLayer.h; sourceTree = "<group>"; };
+		E901F0A216BF38CA005CB026 /* GamePlayLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GamePlayLayer.m; sourceTree = "<group>"; };
 		E901F0A416BF38CA005CB026 /* IntroLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = IntroLayer.h; sourceTree = "<group>"; };
 		E901F0A516BF38CA005CB026 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
+		E901F0AC16BF3A07005CB026 /* Enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enemy.png; sourceTree = "<group>"; };
+		E901F0AD16BF3A07005CB026 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
+		E901F0B216BF3B2E005CB026 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		E901F0B316BF3B2E005CB026 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
+		E901F0B516BF3C1F005CB026 /* LevelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
+		E901F0B616BF3C1F005CB026 /* LevelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
+		E901F0B716BF3C49005CB026 /* Level.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
+		E901F0B816BF3C49005CB026 /* Level.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Level.m; sourceTree = "<group>"; };
+		E901F0B916BF4024005CB026 /* GameOverLayer.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GameOverLayer.h; sourceTree = "<group>"; };
+		E901F0BA16BF4024005CB026 /* GameOverLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
+		E901F0BE16BF46D9005CB026 /* BruteCupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BruteCupid.png; sourceTree = "<group>"; };
+		E901F0BF16BF46D9005CB026 /* Cupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cupid.png; sourceTree = "<group>"; };
+		E901F0C316BF4946005CB026 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -458,10 +480,18 @@
 			children = (
 				E901F09E16BF38CA005CB026 /* AppDelegate.h */,
 				E901F09F16BF38CA005CB026 /* AppDelegate.m */,
-				E901F0A116BF38CA005CB026 /* HelloWorldLayer.h */,
-				E901F0A216BF38CA005CB026 /* HelloWorldLayer.m */,
+				E901F0B216BF3B2E005CB026 /* Enemy.h */,
+				E901F0B316BF3B2E005CB026 /* Enemy.m */,
+				E901F0B516BF3C1F005CB026 /* LevelManager.h */,
+				E901F0B616BF3C1F005CB026 /* LevelManager.m */,
+				E901F0B716BF3C49005CB026 /* Level.h */,
+				E901F0B816BF3C49005CB026 /* Level.m */,
+				E901F0A116BF38CA005CB026 /* GamePlayLayer.h */,
+				E901F0A216BF38CA005CB026 /* GamePlayLayer.m */,
 				E901F0A416BF38CA005CB026 /* IntroLayer.h */,
 				E901F0A516BF38CA005CB026 /* IntroLayer.m */,
+				E901F0B916BF4024005CB026 /* GameOverLayer.h */,
+				E901F0BA16BF4024005CB026 /* GameOverLayer.m */,
 				E901EF2716BF38C8005CB026 /* Resources */,
 				E901EF4116BF38C8005CB026 /* libs */,
 				E901F09A16BF38CA005CB026 /* Supporting Files */,
@@ -472,6 +502,9 @@
 		E901EF2716BF38C8005CB026 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E901F0C216BF493B005CB026 /* Items */,
+				E901F0B116BF3A18005CB026 /* Sounds */,
+				E901F0B016BF3A0B005CB026 /* Characters */,
 				E901EF2816BF38C8005CB026 /* Default.png */,
 				E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */,
 				E901EF2C16BF38C8005CB026 /* fps_images.png */,
@@ -832,6 +865,32 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		E901F0B016BF3A0B005CB026 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				E901F0BE16BF46D9005CB026 /* BruteCupid.png */,
+				E901F0BF16BF46D9005CB026 /* Cupid.png */,
+				E901F0AC16BF3A07005CB026 /* Enemy.png */,
+				E901F0AD16BF3A07005CB026 /* Player.png */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		E901F0B116BF3A18005CB026 /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		E901F0C216BF493B005CB026 /* Items */ = {
+			isa = PBXGroup;
+			children = (
+				E901F0C316BF4946005CB026 /* Projectile.png */,
+			);
+			name = Items;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -895,6 +954,11 @@
 				E901EF3D16BF38C8005CB026 /* Icon@2x.png in Resources */,
 				E901EF4016BF38C8005CB026 /* iTunesArtwork in Resources */,
 				E901F07E16BF38CA005CB026 /* ChangeLog in Resources */,
+				E901F0AE16BF3A07005CB026 /* Enemy.png in Resources */,
+				E901F0AF16BF3A07005CB026 /* Player.png in Resources */,
+				E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */,
+				E901F0C116BF46D9005CB026 /* Cupid.png in Resources */,
+				E901F0C416BF4946005CB026 /* Projectile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -905,6 +969,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E901F0BD16BF447E005CB026 /* Level.m in Sources */,
+				E901F0BC16BF446D005CB026 /* LevelManager.m in Sources */,
+				E901F0BB16BF4467005CB026 /* GameOverLayer.m in Sources */,
 				E901EF4516BF38C8005CB026 /* CCAction.m in Sources */,
 				E901EF4816BF38C8005CB026 /* CCActionCamera.m in Sources */,
 				E901EF4B16BF38C8005CB026 /* CCActionCatmullRom.m in Sources */,
@@ -1007,8 +1074,9 @@
 				E901F09816BF38CA005CB026 /* vec4.c in Sources */,
 				E901F09D16BF38CA005CB026 /* main.m in Sources */,
 				E901F0A016BF38CA005CB026 /* AppDelegate.m in Sources */,
-				E901F0A316BF38CA005CB026 /* HelloWorldLayer.m in Sources */,
+				E901F0A316BF38CA005CB026 /* GamePlayLayer.m in Sources */,
 				E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */,
+				E901F0B416BF3B2E005CB026 /* Enemy.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
