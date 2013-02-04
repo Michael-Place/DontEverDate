@@ -25,8 +25,11 @@
 	// 'scene' is an autorelease object.
 	CCScene *scene = [CCScene node];
 	
+    HUDLayer *hud = [HUDLayer node];
+    [scene addChild:hud z:1];
+    
 	// 'layer' is an autorelease object.
-	GamePlayLayer *layer = [GamePlayLayer node];
+	GamePlayLayer *layer = [[GamePlayLayer alloc] initWithHUD:hud];
 	
 	// add layer as a child to scene
 	[scene addChild: layer];
@@ -82,9 +85,12 @@
     [self addEnemy];
 }
 
-- (id) init
-{
+- (id)initWithHUD:(HUDLayer *)hud {
     if ((self = [super initWithColor:[LevelManager sharedInstance].curLevel.backgroundColor])) {
+        // Initialize HUD
+        _hud = hud;
+        [_hud setPlayerHealthString:[NSString stringWithFormat:@"Health: 3"]];
+        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
         _player = [CCSprite spriteWithFile:@"Player.png"];
@@ -188,6 +194,7 @@
                 enemy.hp --;
                 if (enemy.hp <= 0) {
                     [enemiesToDelete addObject:enemy];
+                    [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
                 }
                 break;
             }

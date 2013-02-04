@@ -9,9 +9,11 @@
 
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
-
+#import "HUDLayer.h"
 @interface GamePlayLayer: CCLayerColor
 {
+    HUDLayer * _hud;
+    
     NSMutableArray * _enemies;
     NSMutableArray * _projectiles;
     int _enemiesDestroyed;
@@ -21,5 +23,8 @@
 
 // returns a CCScene that contains the GamePlayLayer as the only child
 +(CCScene *) scene;
+
+- (id)initWithHUD:(HUDLayer *)hud;
+
 
 @end

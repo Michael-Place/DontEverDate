@@ -142,6 +142,8 @@
 		E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BE16BF46D9005CB026 /* BruteCupid.png */; };
 		E901F0C116BF46D9005CB026 /* Cupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BF16BF46D9005CB026 /* Cupid.png */; };
 		E901F0C416BF4946005CB026 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0C316BF4946005CB026 /* Projectile.png */; };
+		E901F0CA16BF4CA7005CB026 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0C916BF4CA7005CB026 /* Player.m */; };
+		E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0CF16BF4F77005CB026 /* HUDLayer.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -420,6 +422,10 @@
 		E901F0BE16BF46D9005CB026 /* BruteCupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BruteCupid.png; sourceTree = "<group>"; };
 		E901F0BF16BF46D9005CB026 /* Cupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cupid.png; sourceTree = "<group>"; };
 		E901F0C316BF4946005CB026 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
+		E901F0C816BF4CA7005CB026 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
+		E901F0C916BF4CA7005CB026 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
+		E901F0CE16BF4F77005CB026 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
+		E901F0CF16BF4F77005CB026 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -478,20 +484,14 @@
 		E901EF2616BF38C8005CB026 /* DontEverDate */ = {
 			isa = PBXGroup;
 			children = (
+				E901F0CB16BF4CDA005CB026 /* Characters */,
+				E901F0CC16BF4CF5005CB026 /* Layers */,
 				E901F09E16BF38CA005CB026 /* AppDelegate.h */,
 				E901F09F16BF38CA005CB026 /* AppDelegate.m */,
-				E901F0B216BF3B2E005CB026 /* Enemy.h */,
-				E901F0B316BF3B2E005CB026 /* Enemy.m */,
 				E901F0B516BF3C1F005CB026 /* LevelManager.h */,
 				E901F0B616BF3C1F005CB026 /* LevelManager.m */,
 				E901F0B716BF3C49005CB026 /* Level.h */,
 				E901F0B816BF3C49005CB026 /* Level.m */,
-				E901F0A116BF38CA005CB026 /* GamePlayLayer.h */,
-				E901F0A216BF38CA005CB026 /* GamePlayLayer.m */,
-				E901F0A416BF38CA005CB026 /* IntroLayer.h */,
-				E901F0A516BF38CA005CB026 /* IntroLayer.m */,
-				E901F0B916BF4024005CB026 /* GameOverLayer.h */,
-				E901F0BA16BF4024005CB026 /* GameOverLayer.m */,
 				E901EF2716BF38C8005CB026 /* Resources */,
 				E901EF4116BF38C8005CB026 /* libs */,
 				E901F09A16BF38CA005CB026 /* Supporting Files */,
@@ -502,20 +502,11 @@
 		E901EF2716BF38C8005CB026 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				E901F0C216BF493B005CB026 /* Items */,
+				E901F0D116BF5964005CB026 /* Fonts */,
+				E901F0C216BF493B005CB026 /* Game Items */,
 				E901F0B116BF3A18005CB026 /* Sounds */,
-				E901F0B016BF3A0B005CB026 /* Characters */,
-				E901EF2816BF38C8005CB026 /* Default.png */,
-				E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */,
-				E901EF2C16BF38C8005CB026 /* fps_images.png */,
-				E901EF2E16BF38C8005CB026 /* fps_images-hd.png */,
-				E901EF3016BF38C8005CB026 /* fps_images-ipadhd.png */,
-				E901EF3216BF38C8005CB026 /* Icon-72.png */,
-				E901EF3416BF38C8005CB026 /* Icon-Small-50.png */,
-				E901EF3616BF38C8005CB026 /* Icon-Small.png */,
-				E901EF3816BF38C8005CB026 /* Icon-Small@2x.png */,
-				E901EF3A16BF38C8005CB026 /* Icon.png */,
-				E901EF3C16BF38C8005CB026 /* Icon@2x.png */,
+				E901F0B016BF3A0B005CB026 /* Character Resources */,
+				E901F0CD16BF4D2E005CB026 /* App Resources */,
 				E901EF3E16BF38C8005CB026 /* Info.plist */,
 				E901EF3F16BF38C8005CB026 /* iTunesArtwork */,
 			);
@@ -865,7 +856,7 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		E901F0B016BF3A0B005CB026 /* Characters */ = {
+		E901F0B016BF3A0B005CB026 /* Character Resources */ = {
 			isa = PBXGroup;
 			children = (
 				E901F0BE16BF46D9005CB026 /* BruteCupid.png */,
@@ -873,7 +864,7 @@
 				E901F0AC16BF3A07005CB026 /* Enemy.png */,
 				E901F0AD16BF3A07005CB026 /* Player.png */,
 			);
-			name = Characters;
+			name = "Character Resources";
 			sourceTree = "<group>";
 		};
 		E901F0B116BF3A18005CB026 /* Sounds */ = {
@@ -883,12 +874,63 @@
 			name = Sounds;
 			sourceTree = "<group>";
 		};
-		E901F0C216BF493B005CB026 /* Items */ = {
+		E901F0C216BF493B005CB026 /* Game Items */ = {
 			isa = PBXGroup;
 			children = (
 				E901F0C316BF4946005CB026 /* Projectile.png */,
 			);
-			name = Items;
+			name = "Game Items";
+			sourceTree = "<group>";
+		};
+		E901F0CB16BF4CDA005CB026 /* Characters */ = {
+			isa = PBXGroup;
+			children = (
+				E901F0B216BF3B2E005CB026 /* Enemy.h */,
+				E901F0B316BF3B2E005CB026 /* Enemy.m */,
+				E901F0C816BF4CA7005CB026 /* Player.h */,
+				E901F0C916BF4CA7005CB026 /* Player.m */,
+			);
+			name = Characters;
+			sourceTree = "<group>";
+		};
+		E901F0CC16BF4CF5005CB026 /* Layers */ = {
+			isa = PBXGroup;
+			children = (
+				E901F0CE16BF4F77005CB026 /* HUDLayer.h */,
+				E901F0CF16BF4F77005CB026 /* HUDLayer.m */,
+				E901F0A416BF38CA005CB026 /* IntroLayer.h */,
+				E901F0A516BF38CA005CB026 /* IntroLayer.m */,
+				E901F0A116BF38CA005CB026 /* GamePlayLayer.h */,
+				E901F0A216BF38CA005CB026 /* GamePlayLayer.m */,
+				E901F0B916BF4024005CB026 /* GameOverLayer.h */,
+				E901F0BA16BF4024005CB026 /* GameOverLayer.m */,
+			);
+			name = Layers;
+			sourceTree = "<group>";
+		};
+		E901F0CD16BF4D2E005CB026 /* App Resources */ = {
+			isa = PBXGroup;
+			children = (
+				E901EF2816BF38C8005CB026 /* Default.png */,
+				E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */,
+				E901EF2C16BF38C8005CB026 /* fps_images.png */,
+				E901EF2E16BF38C8005CB026 /* fps_images-hd.png */,
+				E901EF3016BF38C8005CB026 /* fps_images-ipadhd.png */,
+				E901EF3216BF38C8005CB026 /* Icon-72.png */,
+				E901EF3416BF38C8005CB026 /* Icon-Small-50.png */,
+				E901EF3616BF38C8005CB026 /* Icon-Small.png */,
+				E901EF3816BF38C8005CB026 /* Icon-Small@2x.png */,
+				E901EF3A16BF38C8005CB026 /* Icon.png */,
+				E901EF3C16BF38C8005CB026 /* Icon@2x.png */,
+			);
+			name = "App Resources";
+			sourceTree = "<group>";
+		};
+		E901F0D116BF5964005CB026 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -1077,6 +1119,8 @@
 				E901F0A316BF38CA005CB026 /* GamePlayLayer.m in Sources */,
 				E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */,
 				E901F0B416BF3B2E005CB026 /* Enemy.m in Sources */,
+				E901F0CA16BF4CA7005CB026 /* Player.m in Sources */,
+				E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
