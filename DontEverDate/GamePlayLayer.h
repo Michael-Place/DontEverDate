@@ -19,7 +19,12 @@
     int _enemiesDestroyed;
     CCSprite *_player;
     CCSprite *_nextProjectile;
+    CCAction *_moveAction;
+    BOOL _moving;
 }
+
+@property (nonatomic, retain) CCAction *moveAction;
+@property (nonatomic, retain) CCSprite *player;
 
 // returns a CCScene that contains the GamePlayLayer as the only child
 +(CCScene *) scene;
