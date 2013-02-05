@@ -12,6 +12,14 @@
 #import "HUDLayer.h"
 @interface GamePlayLayer: CCLayerColor
 {
+    float speed;
+    float radius;
+    float distance;
+    float angle;
+    float angleNoise;
+    CGPoint targetLoc;
+    CGPoint velocity;
+    
     HUDLayer * _hud;
     
     NSMutableArray * _enemies;

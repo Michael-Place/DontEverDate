@@ -49,72 +49,38 @@ static CGRect screenRect;
         enemy = [[[BruteCupid alloc] init] autorelease];
     }
     
-    // Determine where to spawn the enemy along the Y axis
+//    // Determine where to spawn the enemy along the Y axis
     CGSize winSize = [CCDirector sharedDirector].winSize;
-    int minY = enemy.contentSize.height / 2;
-    int maxY = winSize.height - enemy.contentSize.height/2;
-    int rangeY = maxY - minY;
-    int actualY = (arc4random() % rangeY) + minY;
+//    int minY = enemy.contentSize.height / 2;
+//    int maxY = winSize.height - enemy.contentSize.height/2;
+//    int rangeY = maxY - minY;
+//    int actualY = (arc4random() % rangeY) + minY;
     
     // Create the enemy slightly off-screen along the right edge,
     // and along a random position along the Y axis as calculated above
-    enemy.position = ccp(winSize.width + enemy.contentSize.width/2, actualY);
+    enemy.position = ccp(100,100);
     [self addChild:enemy];
     
     // Determine speed of the enemy
-    int minDuration = enemy.minMoveDuration; //2.0;
-    int maxDuration = enemy.maxMoveDuration; //4.0;
-    int rangeDuration = maxDuration - minDuration;
-    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+//    int minDuration = enemy.minMoveDuration; //2.0;
+//    int maxDuration = enemy.maxMoveDuration; //4.0;
+//    int rangeDuration = maxDuration - minDuration;
+//    int actualDuration = (arc4random() % rangeDuration) + minDuration;
     
     // Create the actions
-    CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-enemy.contentSize.width/2, -enemy.contentSize.height/2)];
-    CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
-        [_enemies removeObject:node];
-        [node removeFromParentAndCleanup:YES];
-        
-        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-        [[CCDirector sharedDirector] replaceScene:gameOverScene];
-    }];
-    [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+//    CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-enemy.contentSize.width/2, -enemy.contentSize.height/2)];
+//    CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+//        [_enemies removeObject:node];
+//        [node removeFromParentAndCleanup:YES];
+//        
+//        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+//        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+//    }];
+//    [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
     
     enemy.tag = 1;
     [_enemies addObject:enemy];
     
-}
-
-// override setPosition to keep it within screen bounds
--(void) setPosition:(CGPoint)pos
-{
-	// If the current position is (still) outside the screen no adjustments should be made!
-	// This allows it to move into the screen from outside.
-	if (CGRectContainsRect(screenRect, [self boundingBox]))
-	{
-		CGSize screenSize = [[CCDirector sharedDirector] winSize];
-		float halfWidth = self.contentSize.width * 0.5f;
-		float halfHeight = self.contentSize.height * 0.5f;
-        
-		// Cap the position so the Ship's sprite stays on the screen
-		if (pos.x < halfWidth)
-		{
-			pos.x = halfWidth;
-		}
-		else if (pos.x > (screenSize.width - halfWidth))
-		{
-			pos.x = screenSize.width - halfWidth;
-		}
-        
-		if (pos.y < halfHeight)
-		{
-			pos.y = halfHeight;
-		}
-		else if (pos.y > (screenSize.height - halfHeight))
-		{
-			pos.y = screenSize.height - halfHeight;
-		}
-	}
-    
-	[super setPosition:pos];
 }
 
 -(void)gameLogic:(ccTime)dt {
@@ -143,7 +109,8 @@ static CGRect screenRect;
         _enemies = [[NSMutableArray alloc] init];
         _projectiles = [[NSMutableArray alloc] init];
         
-        [self schedule:@selector(update:)];
+        [self setParameters];
+        [self scheduleUpdate];
         
         //        [[SimpleAudioEngine sharedEngine] playBackgroundMusic:@"background-music-aac.caf"];
         
@@ -261,49 +228,96 @@ static CGRect screenRect;
 }
 
 - (void)update:(ccTime)dt {
-    
-    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-    for (CCSprite *projectile in _projectiles) {
-        
+    NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
+    for (Enemy *e in _enemies) {
         BOOL enemyHit = FALSE;
-        NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
-        for (Enemy *enemy in _enemies) {
-            
-            if (CGRectIntersectsRect(projectile.boundingBox, enemy.boundingBox)) {
-                enemyHit = TRUE;
-                enemy.hp --;
-                if (enemy.hp <= 0) {
-                    [enemiesToDelete addObject:enemy];
-                }
-                break;
+        if (CGRectIntersectsRect(self.player.boundingBox, e.boundingBox)) {
+            enemyHit = TRUE;
+            e.hp --;
+            if (e.hp <= 0) {
+                [enemiesToDelete addObject:e];
             }
+            break;
         }
-        
-        for (CCSprite *enemy in enemiesToDelete) {
-            
-            [_enemies removeObject:enemy];
-            [self removeChild:enemy cleanup:YES];
-            
-            _enemiesDestroyed++;
-            [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
-            if (_enemiesDestroyed > 30) {
-                CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
-                [[CCDirector sharedDirector] replaceScene:gameOverScene];
-            }
-        }
-        
-        if (enemyHit) {
-            [projectilesToDelete addObject:projectile];
-//            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
-        }
-        [enemiesToDelete release];
     }
     
-    for (CCSprite *projectile in projectilesToDelete) {
-        [_projectiles removeObject:projectile];
-        [self removeChild:projectile cleanup:YES];
+    for (CCSprite *enemy in enemiesToDelete) {
+        
+        [_enemies removeObject:enemy];
+        [self removeChild:enemy cleanup:YES];
+        
+        _enemiesDestroyed++;
+        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
+        if (_enemiesDestroyed > 30) {
+            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
+            [[CCDirector sharedDirector] replaceScene:gameOverScene];
+        }
     }
-    [projectilesToDelete release];
+    [enemiesToDelete release];
+
+    
+    for (Enemy *e in _enemies) {
+        CGPoint desiredDirection=[self normalizeVector:ccpSub(targetLoc, e.position)];
+        velocity=ccpMult(desiredDirection, speed);
+        e.position=ccpAdd(e.position, velocity);
+        e.rotation=[self angleForVector:velocity];
+        [self keepEnemyOnScreen:e];
+        
+        // find the center of the circle
+        CGPoint circleLoc=[self normalizeVector:velocity];
+        circleLoc=ccpMult(circleLoc, distance);
+        circleLoc=ccpAdd(e.position, circleLoc);
+        
+        // find a point on the circle's perimiter for our target
+        angle=angle+[self generateRandomBetween:-angleNoise and:angleNoise];
+        CGPoint perimiterPoint=ccp(cosf(angle), sinf(angle));
+        perimiterPoint=ccpMult(perimiterPoint, radius);
+        targetLoc=ccpAdd(circleLoc, perimiterPoint);
+    }
+    
+    
+//    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+//    for (CCSprite *projectile in _projectiles) {
+//        
+//        BOOL enemyHit = FALSE;
+//        NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
+//        for (Enemy *enemy in _enemies) {
+//            
+//            if (CGRectIntersectsRect(projectile.boundingBox, enemy.boundingBox)) {
+//                enemyHit = TRUE;
+//                enemy.hp --;
+//                if (enemy.hp <= 0) {
+//                    [enemiesToDelete addObject:enemy];
+//                }
+//                break;
+//            }
+//        }
+//        
+//        for (CCSprite *enemy in enemiesToDelete) {
+//            
+//            [_enemies removeObject:enemy];
+//            [self removeChild:enemy cleanup:YES];
+//            
+//            _enemiesDestroyed++;
+//            [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
+//            if (_enemiesDestroyed > 30) {
+//                CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
+//                [[CCDirector sharedDirector] replaceScene:gameOverScene];
+//            }
+//        }
+//        
+//        if (enemyHit) {
+//            [projectilesToDelete addObject:projectile];
+////            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
+//        }
+//        [enemiesToDelete release];
+//    }
+//    
+//    for (CCSprite *projectile in projectilesToDelete) {
+//        [_projectiles removeObject:projectile];
+//        [self removeChild:projectile cleanup:YES];
+//    }
+//    [projectilesToDelete release];
 }
 
 
@@ -314,10 +328,43 @@ static CGRect screenRect;
     _enemies = nil;
     [_projectiles release];
     _projectiles = nil;
-    self.walkAction = nil;
     self.player = nil;
     [super dealloc];
     
+}
+
+#pragma mark - Math Methods
+
+-(void) setParameters {
+    radius = 10.0f;
+    distance = 300.0f;
+    angleNoise = 0.1f;
+    speed = 1.0f;
+}
+
+
+-(float)generateRandomBetween:(float)start and:(float)finish {
+    float randomFloat = (arc4random()%1000)/1000;
+    return randomFloat*(finish-start)+start;
+}
+
+-(CGPoint)normalizeVector:(CGPoint)vector {
+    float length = sqrtf(vector.x * vector.x + vector.y * vector.y);
+    if (length<0.000001) return ccp(0, 1);
+    return ccpMult(vector, 1/length);
+}
+
+-(float)angleForVector:(CGPoint)vector {
+    float alfa = atanf(vector.x/vector.y)*180/3.14;
+    if (vector.y<0) alfa=alfa+180;
+    return alfa;
+}
+
+-(void)keepEnemyOnScreen:(Enemy*)enemy {
+    if (enemy.position.x>480) enemy.position=ccp(enemy.position.x-480, enemy.position.y);
+    if (enemy.position.x<0) enemy.position=ccp(enemy.position.x+480, enemy.position.y);
+    if (enemy.position.y>320) enemy.position=ccp(enemy.position.x, enemy.position.y-320);
+    if (enemy.position.y<0) enemy.position=ccp(enemy.position.x, enemy.position.y+320);
 }
 
 @end
