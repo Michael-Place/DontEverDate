@@ -228,6 +228,7 @@ static CGRect screenRect;
 }
 
 - (void)update:(ccTime)dt {
+
     NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
     for (Enemy *e in _enemies) {
         BOOL enemyHit = FALSE;
@@ -257,6 +258,17 @@ static CGRect screenRect;
 
     
     for (Enemy *e in _enemies) {
+        targetLoc = _player.position;
+        int distX = abs(e.position.x - _player.position.x);
+        int distY = abs(e.position.y - _player.position.y);
+        int distH = sqrt((distX*distX)+(distY*distY));
+        if (distH > 100) {
+            targetLoc = _player.position;
+        }
+        else{
+            targetLoc = CGPointMake(e.position.x + [self generateRandomBetween:-500 and:500], e.position.y + [self generateRandomBetween:-500 and:500]);
+        }
+                         
         CGPoint desiredDirection=[self normalizeVector:ccpSub(targetLoc, e.position)];
         velocity=ccpMult(desiredDirection, speed);
         e.position=ccpAdd(e.position, velocity);
