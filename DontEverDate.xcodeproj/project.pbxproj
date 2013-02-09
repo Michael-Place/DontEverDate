@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		E901095816C5E54C0023B811 /* Button1.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095416C5E54C0023B811 /* Button1.png */; };
+		E901095916C5E54C0023B811 /* Button1Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095516C5E54C0023B811 /* Button1Sel.png */; };
+		E901095A16C5E54C0023B811 /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095616C5E54C0023B811 /* Button2.png */; };
+		E901095B16C5E54C0023B811 /* Button2Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095716C5E54C0023B811 /* Button2Sel.png */; };
+		E901095E16C5F0740023B811 /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901095D16C5F0730023B811 /* HighScoresLayer.m */; };
 		E901EF1516BF38C8005CB026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1416BF38C8005CB026 /* QuartzCore.framework */; };
 		E901EF1716BF38C8005CB026 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1616BF38C8005CB026 /* OpenGLES.framework */; };
 		E901EF1916BF38C8005CB026 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1816BF38C8005CB026 /* OpenAL.framework */; };
@@ -148,6 +153,12 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		E901095416C5E54C0023B811 /* Button1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1.png; sourceTree = "<group>"; };
+		E901095516C5E54C0023B811 /* Button1Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button1Sel.png; sourceTree = "<group>"; };
+		E901095616C5E54C0023B811 /* Button2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2.png; sourceTree = "<group>"; };
+		E901095716C5E54C0023B811 /* Button2Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2Sel.png; sourceTree = "<group>"; };
+		E901095C16C5F0730023B811 /* HighScoresLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresLayer.h; sourceTree = "<group>"; };
+		E901095D16C5F0730023B811 /* HighScoresLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresLayer.m; sourceTree = "<group>"; };
 		E901EF1116BF38C8005CB026 /* DontEverDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DontEverDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E901EF1416BF38C8005CB026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E901EF1616BF38C8005CB026 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -909,6 +920,8 @@
 				E901F0A216BF38CA005CB026 /* GamePlayLayer.m */,
 				E901F0B916BF4024005CB026 /* GameOverLayer.h */,
 				E901F0BA16BF4024005CB026 /* GameOverLayer.m */,
+				E901095C16C5F0730023B811 /* HighScoresLayer.h */,
+				E901095D16C5F0730023B811 /* HighScoresLayer.m */,
 			);
 			name = Layers;
 			sourceTree = "<group>";
@@ -916,6 +929,10 @@
 		E901F0CD16BF4D2E005CB026 /* App Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E901095416C5E54C0023B811 /* Button1.png */,
+				E901095516C5E54C0023B811 /* Button1Sel.png */,
+				E901095616C5E54C0023B811 /* Button2.png */,
+				E901095716C5E54C0023B811 /* Button2Sel.png */,
 				E901EF2816BF38C8005CB026 /* Default.png */,
 				E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */,
 				E901EF2C16BF38C8005CB026 /* fps_images.png */,
@@ -1006,6 +1023,10 @@
 				E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */,
 				E901F0C116BF46D9005CB026 /* Cupid.png in Resources */,
 				E901F0C416BF4946005CB026 /* Projectile.png in Resources */,
+				E901095816C5E54C0023B811 /* Button1.png in Resources */,
+				E901095916C5E54C0023B811 /* Button1Sel.png in Resources */,
+				E901095A16C5E54C0023B811 /* Button2.png in Resources */,
+				E901095B16C5E54C0023B811 /* Button2Sel.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1127,6 +1148,7 @@
 				E901F0CA16BF4CA7005CB026 /* Player.m in Sources */,
 				E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */,
 				E98AEB6E16C5D52400D07CFC /* Auxiliary.m in Sources */,
+				E901095E16C5F0740023B811 /* HighScoresLayer.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

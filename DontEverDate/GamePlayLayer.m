@@ -89,7 +89,7 @@ static CGRect screenRect;
 
 - (id)initWithHUD:(HUDLayer *)hud {
     if ((self = [super initWithColor:[LevelManager sharedInstance].curLevel.backgroundColor])) {
-        _enemyLimit = 10;
+        _enemyLimit = 1;
         [self setIsTouchEnabled:YES];
         if (CGRectIsEmpty(screenRect)){
             CGSize screenSize = [[CCDirector sharedDirector] winSize];

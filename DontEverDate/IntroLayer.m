@@ -10,6 +10,7 @@
 // Import the interfaces
 #import "IntroLayer.h"
 #import "GamePlayLayer.h"
+#import "HighScoresLayer.h"
 
 
 #pragma mark - IntroLayer
@@ -52,13 +53,34 @@
 
 	// add the label as a child to this Layer
 	[self addChild: background];
-	
-	// In one second transition to the new scene
-	[self scheduleOnce:@selector(makeTransition:) delay:1];
+    
+    [self addGameNavigationButtonsToLayer];
 }
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1.0 scene:[GamePlayLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:dt scene:[GamePlayLayer scene] withColor:ccWHITE]];
+}
+
+-(void)play {
+    [self makeTransition:1];
+}
+
+-(void)showHighScoresMenu {
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1 scene:[HighScoresLayer scene] withColor:ccWHITE]];
+}
+
+-(void)addGameNavigationButtonsToLayer {
+    CCMenuItem *play = [CCMenuItemImage itemWithNormalImage:@"Button1.png" selectedImage:@"Button1Sel.png" target:self selector:@selector(play)];
+    play.position = ccp(60, 30);
+    CCMenu *playMenu = [CCMenu menuWithItems:play, nil];
+    playMenu.position = ccp(60,30);
+    [self addChild:playMenu];
+    
+    CCMenuItem *showHighScores = [CCMenuItemImage itemWithNormalImage:@"Button2.png" selectedImage:@"Button2Sel.png" target:self selector:@selector(showHighScoresMenu)];
+    showHighScores.position = ccp(180, 30);
+    CCMenu *showHighScoresMenu = [CCMenu menuWithItems:showHighScores, nil];
+    showHighScoresMenu.position = ccp(180,30);
+    [self addChild:showHighScoresMenu];
 }
 @end
