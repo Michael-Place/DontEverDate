@@ -250,7 +250,7 @@ static CGRect screenRect;
         
         _enemiesDestroyed++;
         [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
-        if (_enemiesDestroyed > 30) {
+        if (_enemiesDestroyed >= _enemyLimit) {
             CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
@@ -267,22 +267,22 @@ static CGRect screenRect;
             targetLoc = _player.position;
         }
         else{
-            targetLoc = CGPointMake(e.position.x + [self generateRandomBetween:-500 and:500], e.position.y + [self generateRandomBetween:-500 and:500]);
+            targetLoc = CGPointMake(e.position.x + [Auxiliary generateRandomBetween:-500 andFinish:500], e.position.y + [Auxiliary generateRandomBetween:-500 andFinish:500]);
         }
                          
-        CGPoint desiredDirection=[self normalizeVector:ccpSub(targetLoc, e.position)];
+        CGPoint desiredDirection=[Auxiliary normalizeVector:ccpSub(targetLoc, e.position)];
         velocity=ccpMult(desiredDirection, speed);
         e.position=ccpAdd(e.position, velocity);
-        e.rotation=[self angleForVector:velocity];
+        e.rotation=[Auxiliary angleForVector:velocity];
         [self keepEnemyOnScreen:e];
         
         // find the center of the circle
-        CGPoint circleLoc=[self normalizeVector:velocity];
+        CGPoint circleLoc=[Auxiliary normalizeVector:velocity];
         circleLoc=ccpMult(circleLoc, distance);
         circleLoc=ccpAdd(e.position, circleLoc);
         
         // find a point on the circle's perimiter for our target
-        angle=angle+[self generateRandomBetween:-angleNoise and:angleNoise];
+        angle=angle+[Auxiliary generateRandomBetween:-angleNoise andFinish:angleNoise];
         CGPoint perimiterPoint=ccp(cosf(angle), sinf(angle));
         perimiterPoint=ccpMult(perimiterPoint, radius);
         targetLoc=ccpAdd(circleLoc, perimiterPoint);
@@ -353,24 +353,6 @@ static CGRect screenRect;
     distance = 300.0f;
     angleNoise = 0.1f;
     speed = 1.0f;
-}
-
-
--(float)generateRandomBetween:(float)start and:(float)finish {
-    float randomFloat = (arc4random()%1000)/1000;
-    return randomFloat*(finish-start)+start;
-}
-
--(CGPoint)normalizeVector:(CGPoint)vector {
-    float length = sqrtf(vector.x * vector.x + vector.y * vector.y);
-    if (length<0.000001) return ccp(0, 1);
-    return ccpMult(vector, 1/length);
-}
-
--(float)angleForVector:(CGPoint)vector {
-    float alfa = atanf(vector.x/vector.y)*180/3.14;
-    if (vector.y<0) alfa=alfa+180;
-    return alfa;
 }
 
 -(void)keepEnemyOnScreen:(Enemy*)enemy {

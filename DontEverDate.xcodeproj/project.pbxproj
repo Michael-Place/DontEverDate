@@ -143,6 +143,7 @@
 		E901F0C416BF4946005CB026 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0C316BF4946005CB026 /* Projectile.png */; };
 		E901F0CA16BF4CA7005CB026 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0C916BF4CA7005CB026 /* Player.m */; };
 		E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0CF16BF4F77005CB026 /* HUDLayer.m */; };
+		E98AEB6E16C5D52400D07CFC /* Auxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E98AEB6D16C5D52400D07CFC /* Auxiliary.m */; };
 		E9CBF11B16C48B05008BB5F8 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CBF11A16C48ADA008BB5F8 /* Enemy.m */; };
 /* End PBXBuildFile section */
 
@@ -424,6 +425,8 @@
 		E901F0C916BF4CA7005CB026 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		E901F0CE16BF4F77005CB026 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		E901F0CF16BF4F77005CB026 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
+		E98AEB6C16C5D52400D07CFC /* Auxiliary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Auxiliary.h; sourceTree = "<group>"; };
+		E98AEB6D16C5D52400D07CFC /* Auxiliary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auxiliary.m; sourceTree = "<group>"; };
 		E9CBF11916C48ADA008BB5F8 /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		E9CBF11A16C48ADA008BB5F8 /* Enemy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -492,6 +495,8 @@
 				E901F0B616BF3C1F005CB026 /* LevelManager.m */,
 				E901F0B716BF3C49005CB026 /* Level.h */,
 				E901F0B816BF3C49005CB026 /* Level.m */,
+				E98AEB6C16C5D52400D07CFC /* Auxiliary.h */,
+				E98AEB6D16C5D52400D07CFC /* Auxiliary.m */,
 				E901EF2716BF38C8005CB026 /* Resources */,
 				E901EF4116BF38C8005CB026 /* libs */,
 				E901F09A16BF38CA005CB026 /* Supporting Files */,
@@ -1121,6 +1126,7 @@
 				E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */,
 				E901F0CA16BF4CA7005CB026 /* Player.m in Sources */,
 				E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */,
+				E98AEB6E16C5D52400D07CFC /* Auxiliary.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
