@@ -9,21 +9,23 @@
 #import "GameOverLayer.h"
 #import "GamePlayLayer.h"
 #import "LevelManager.h"
+#import "HighScoreManager.h"
 
 @implementation GameOverLayer
+@synthesize gameEndScore = _gameEndScore;
 
-+(CCScene *) sceneWithWon:(BOOL)won {
++(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score{
     CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon:won] autorelease];
+    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon:won andScore:[NSNumber numberWithInt:score]] autorelease];
     [scene addChild: layer];
     return scene;
 }
 
-- (id)initWithWon:(BOOL)won {
+- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score{
     if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
-        
         NSString * message;
         if (won) {
+            self.gameEndScore = score;
             [[LevelManager sharedInstance] nextLevel];
             Level * curLevel = [[LevelManager sharedInstance] curLevel];
             if (curLevel) {
@@ -38,11 +40,12 @@
             } else {
                 message = @"You Won!";
                 [self addGameOverButtonsToLayer];
+                [self addHighScoreEntry];
             }
         } else {
             message = @"You Lose :[";
             [self addGameOverButtonsToLayer];
-
+            [self addHighScoreEntry];
         }
 
 
@@ -72,6 +75,10 @@
             
         }
     }
+}
+
+-(void)addHighScoreEntry {
+    [HighScoreManager addEntryToHighScoreDictionaryWith:@"Static Name" andScore:self.gameEndScore];
 }
 
 -(void)playAgain {

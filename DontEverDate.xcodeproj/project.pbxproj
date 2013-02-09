@@ -12,6 +12,9 @@
 		E901095A16C5E54C0023B811 /* Button2.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095616C5E54C0023B811 /* Button2.png */; };
 		E901095B16C5E54C0023B811 /* Button2Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = E901095716C5E54C0023B811 /* Button2Sel.png */; };
 		E901095E16C5F0740023B811 /* HighScoresLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901095D16C5F0730023B811 /* HighScoresLayer.m */; };
+		E901096116C60BA40023B811 /* HighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E901096016C60BA30023B811 /* HighScoreManager.m */; };
+		E901096316C60D860023B811 /* HighScore.plist in Resources */ = {isa = PBXBuildFile; fileRef = E901096216C60D860023B811 /* HighScore.plist */; };
+		E901096516C6105D0023B811 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E901096416C6105D0023B811 /* Default-568h@2x.png */; };
 		E901EF1516BF38C8005CB026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1416BF38C8005CB026 /* QuartzCore.framework */; };
 		E901EF1716BF38C8005CB026 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1616BF38C8005CB026 /* OpenGLES.framework */; };
 		E901EF1916BF38C8005CB026 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1816BF38C8005CB026 /* OpenAL.framework */; };
@@ -159,6 +162,10 @@
 		E901095716C5E54C0023B811 /* Button2Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Button2Sel.png; sourceTree = "<group>"; };
 		E901095C16C5F0730023B811 /* HighScoresLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoresLayer.h; sourceTree = "<group>"; };
 		E901095D16C5F0730023B811 /* HighScoresLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoresLayer.m; sourceTree = "<group>"; };
+		E901095F16C60BA30023B811 /* HighScoreManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HighScoreManager.h; sourceTree = "<group>"; };
+		E901096016C60BA30023B811 /* HighScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreManager.m; sourceTree = "<group>"; };
+		E901096216C60D860023B811 /* HighScore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HighScore.plist; sourceTree = "<group>"; };
+		E901096416C6105D0023B811 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		E901EF1116BF38C8005CB026 /* DontEverDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DontEverDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E901EF1416BF38C8005CB026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E901EF1616BF38C8005CB026 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -465,6 +472,7 @@
 		E901EF0816BF38C8005CB026 = {
 			isa = PBXGroup;
 			children = (
+				E901096416C6105D0023B811 /* Default-568h@2x.png */,
 				E901EF2616BF38C8005CB026 /* DontEverDate */,
 				E901EF1316BF38C8005CB026 /* Frameworks */,
 				E901EF1216BF38C8005CB026 /* Products */,
@@ -508,6 +516,8 @@
 				E901F0B816BF3C49005CB026 /* Level.m */,
 				E98AEB6C16C5D52400D07CFC /* Auxiliary.h */,
 				E98AEB6D16C5D52400D07CFC /* Auxiliary.m */,
+				E901095F16C60BA30023B811 /* HighScoreManager.h */,
+				E901096016C60BA30023B811 /* HighScoreManager.m */,
 				E901EF2716BF38C8005CB026 /* Resources */,
 				E901EF4116BF38C8005CB026 /* libs */,
 				E901F09A16BF38CA005CB026 /* Supporting Files */,
@@ -525,6 +535,7 @@
 				E901F0CD16BF4D2E005CB026 /* App Resources */,
 				E901EF3E16BF38C8005CB026 /* Info.plist */,
 				E901EF3F16BF38C8005CB026 /* iTunesArtwork */,
+				E901096216C60D860023B811 /* HighScore.plist */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -1027,6 +1038,8 @@
 				E901095916C5E54C0023B811 /* Button1Sel.png in Resources */,
 				E901095A16C5E54C0023B811 /* Button2.png in Resources */,
 				E901095B16C5E54C0023B811 /* Button2Sel.png in Resources */,
+				E901096316C60D860023B811 /* HighScore.plist in Resources */,
+				E901096516C6105D0023B811 /* Default-568h@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1149,6 +1162,7 @@
 				E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */,
 				E98AEB6E16C5D52400D07CFC /* Auxiliary.m in Sources */,
 				E901095E16C5F0740023B811 /* HighScoresLayer.m in Sources */,
+				E901096116C60BA40023B811 /* HighScoreManager.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

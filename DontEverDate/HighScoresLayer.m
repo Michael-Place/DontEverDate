@@ -7,6 +7,7 @@
 //
 
 #import "HighScoresLayer.h"
+#import "HighScoreManager.h"
 
 @implementation HighScoresLayer
 
@@ -57,19 +58,19 @@
 
 -(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"MyIdentifier"];
-    
     if (cell == nil) {
         cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:@"CellIdentifier"] autorelease];
         cell.selectionStyle = UITableViewCellSelectionStyleNone;
     }
-    
-    cell.textLabel.text = @"test";
+//    NSArray *keys = [[HighScoreManager getHighScoreDictionary] allKeys];
+    NSDictionary *tmp = [[HighScoreManager getHighScoreDictionary] valueForKey:[NSString stringWithFormat:@"%i",[indexPath row] ]];
+    cell.textLabel.text = [NSString stringWithFormat:@"%i:  %@      -      %@",[indexPath row] + 1, [[tmp allKeys] objectAtIndex:0], [[tmp allValues] objectAtIndex:0]];
     
     return cell;
 }
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 10;
+    return [[HighScoreManager getHighScoreDictionary] count];
 }
 
 -(void)dealloc {

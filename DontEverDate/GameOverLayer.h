@@ -8,9 +8,13 @@
 
 #import "cocos2d.h"
 
-@interface GameOverLayer : CCLayerColor
+@interface GameOverLayer : CCLayerColor {
+    NSNumber *_gameEndScore;
+}
 
-+(CCScene *) sceneWithWon:(BOOL)won;
-- (id)initWithWon:(BOOL)won;
+@property (nonatomic, retain) NSNumber *gameEndScore;
+
++(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score;
+- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score;
 
 @end

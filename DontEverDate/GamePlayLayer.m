@@ -185,7 +185,7 @@ static CGRect screenRect;
         _enemiesDestroyed++;
         [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
         if (_enemiesDestroyed >= _enemyLimit) {
-            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
+            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES andScore:_enemiesDestroyed];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
