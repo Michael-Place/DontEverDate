@@ -28,6 +28,13 @@
             Level * curLevel = [[LevelManager sharedInstance] curLevel];
             if (curLevel) {
                 message = [NSString stringWithFormat:@"Get ready for level %d!", curLevel.levelNum];
+                [self runAction:
+                 [CCSequence actions:
+                  [CCDelayTime actionWithDuration:1],
+                  [CCCallBlockN actionWithBlock:^(CCNode *node) {
+                     [[CCDirector sharedDirector] replaceScene:[GamePlayLayer scene]];
+                 }],
+                  nil]];
             } else {
                 message = @"You Won!";
                 [self addGameOverButtonsToLayer];
@@ -44,14 +51,6 @@
         label.color = ccc3(0,0,0);
         label.position = ccp(winSize.width/2, winSize.height/2);
         [self addChild:label];
-        
-        [self runAction:
-         [CCSequence actions:
-          [CCDelayTime actionWithDuration:3],
-          [CCCallBlockN actionWithBlock:^(CCNode *node) {
-             [[CCDirector sharedDirector] replaceScene:[GamePlayLayer scene]];
-        }],
-          nil]];
     }
     return self;
 }
@@ -77,6 +76,13 @@
 
 -(void)playAgain {
     [[LevelManager sharedInstance] reset];
+    [self runAction:
+     [CCSequence actions:
+      [CCDelayTime actionWithDuration:1],
+      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+         [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1 scene:[GamePlayLayer scene] withColor:ccWHITE]];
+     }],
+      nil]];
 }
 
 -(void)addGameOverButtonsToLayer {
