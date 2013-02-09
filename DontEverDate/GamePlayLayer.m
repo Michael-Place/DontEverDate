@@ -41,46 +41,46 @@ static CGRect screenRect;
 
 
 - (void) addEnemy {
-    
-    Enemy * enemy;
-    if (arc4random() % 2 == 0) {
-        enemy = [[[Cupid alloc] init] autorelease];
-    } else {
-        enemy = [[[BruteCupid alloc] init] autorelease];
+    if ((_enemiesDestroyed + [_enemies count]) <= _enemyLimit) {
+        Enemy * enemy;
+        if (arc4random() % 2 == 0) {
+            enemy = [[[Cupid alloc] init] autorelease];
+        } else {
+            enemy = [[[BruteCupid alloc] init] autorelease];
+        }
+        
+        //    // Determine where to spawn the enemy along the Y axis
+//        CGSize winSize = [CCDirector sharedDirector].winSize;
+        //    int minY = enemy.contentSize.height / 2;
+        //    int maxY = winSize.height - enemy.contentSize.height/2;
+        //    int rangeY = maxY - minY;
+        //    int actualY = (arc4random() % rangeY) + minY;
+        
+        // Create the enemy slightly off-screen along the right edge,
+        // and along a random position along the Y axis as calculated above
+        enemy.position = ccp(100,100);
+        [self addChild:enemy];
+        
+        // Determine speed of the enemy
+        //    int minDuration = enemy.minMoveDuration; //2.0;
+        //    int maxDuration = enemy.maxMoveDuration; //4.0;
+        //    int rangeDuration = maxDuration - minDuration;
+        //    int actualDuration = (arc4random() % rangeDuration) + minDuration;
+        
+        // Create the actions
+        //    CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-enemy.contentSize.width/2, -enemy.contentSize.height/2)];
+        //    CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
+        //        [_enemies removeObject:node];
+        //        [node removeFromParentAndCleanup:YES];
+        //
+        //        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
+        //        [[CCDirector sharedDirector] replaceScene:gameOverScene];
+        //    }];
+        //    [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
+        
+        enemy.tag = 1;
+        [_enemies addObject:enemy];
     }
-    
-//    // Determine where to spawn the enemy along the Y axis
-    CGSize winSize = [CCDirector sharedDirector].winSize;
-//    int minY = enemy.contentSize.height / 2;
-//    int maxY = winSize.height - enemy.contentSize.height/2;
-//    int rangeY = maxY - minY;
-//    int actualY = (arc4random() % rangeY) + minY;
-    
-    // Create the enemy slightly off-screen along the right edge,
-    // and along a random position along the Y axis as calculated above
-    enemy.position = ccp(100,100);
-    [self addChild:enemy];
-    
-    // Determine speed of the enemy
-//    int minDuration = enemy.minMoveDuration; //2.0;
-//    int maxDuration = enemy.maxMoveDuration; //4.0;
-//    int rangeDuration = maxDuration - minDuration;
-//    int actualDuration = (arc4random() % rangeDuration) + minDuration;
-    
-    // Create the actions
-//    CCMoveTo * actionMove = [CCMoveTo actionWithDuration:actualDuration position:ccp(-enemy.contentSize.width/2, -enemy.contentSize.height/2)];
-//    CCCallBlockN * actionMoveDone = [CCCallBlockN actionWithBlock:^(CCNode *node) {
-//        [_enemies removeObject:node];
-//        [node removeFromParentAndCleanup:YES];
-//        
-//        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO];
-//        [[CCDirector sharedDirector] replaceScene:gameOverScene];
-//    }];
-//    [enemy runAction:[CCSequence actions:actionMove, actionMoveDone, nil]];
-    
-    enemy.tag = 1;
-    [_enemies addObject:enemy];
-    
 }
 
 -(void)gameLogic:(ccTime)dt {
@@ -89,6 +89,7 @@ static CGRect screenRect;
 
 - (id)initWithHUD:(HUDLayer *)hud {
     if ((self = [super initWithColor:[LevelManager sharedInstance].curLevel.backgroundColor])) {
+        _enemyLimit = 10;
         [self setIsTouchEnabled:YES];
         if (CGRectIsEmpty(screenRect)){
             CGSize screenSize = [[CCDirector sharedDirector] winSize];

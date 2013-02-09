@@ -25,6 +25,7 @@
     NSMutableArray * _enemies;
     NSMutableArray * _projectiles;
     int _enemiesDestroyed;
+    int _enemyLimit;
     CCSprite *_player;
     CCSprite *_nextProjectile;
     CCAction *_moveAction;
