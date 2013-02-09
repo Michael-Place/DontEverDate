@@ -58,7 +58,7 @@ static CGRect screenRect;
         
         // Create the enemy slightly off-screen along the right edge,
         // and along a random position along the Y axis as calculated above
-        enemy.position = ccp(100,100);
+        enemy.position = ccp([Auxiliary generateRandomBetween:0 andFinish:500],[Auxiliary generateRandomBetween:0 andFinish:300]);
         [self addChild:enemy];
         
         // Determine speed of the enemy
@@ -156,73 +156,7 @@ static CGRect screenRect;
     _moving = TRUE;
 }
 
-//- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
-//    
-//    if (_nextProjectile != nil) return;
-//    
-//    // Choose one of the touches to work with
-//    UITouch *touch = [touches anyObject];
-//    CGPoint location = [self convertTouchToNodeSpace:touch];
-//    
-//    // Set up initial location of projectile
-//    CGSize winSize = [[CCDirector sharedDirector] winSize];
-//    _nextProjectile = [[CCSprite spriteWithFile:@"Projectile.png"] retain];
-//    _nextProjectile.position = ccp(20, winSize.height/2);
-//    
-//    // Determine offset of location to projectile
-//    CGPoint offset = ccpSub(location, _nextProjectile.position);
-//    
-//    // Bail out if you are shooting down or backwards
-//    if (offset.x <= 0) return;
-//    
-//    // Determine where you wish to shoot the projectile to
-//    int realX = winSize.width + (_nextProjectile.contentSize.width/2);
-//    float ratio = (float) offset.y / (float) offset.x;
-//    int realY = (realX * ratio) + _nextProjectile.position.y;
-//    CGPoint realDest = ccp(realX, realY);
-//    
-//    // Determine the length of how far you're shooting
-//    int offRealX = realX - _nextProjectile.position.x;
-//    int offRealY = realY - _nextProjectile.position.y;
-//    float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
-//    float velocity = 480/1; // 480pixels/1sec
-//    float realMoveDuration = length/velocity;
-//    
-//    // Determine angle to face
-//    float angleRadians = atanf((float)offRealY / (float)offRealX);
-//    float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
-//    float cocosAngle = -1 * angleDegrees;
-//    float rotateDegreesPerSecond = 180 / 0.5; // Would take 0.5 seconds to rotate 180 degrees, or half a circle
-//    float degreesDiff = _player.rotation - cocosAngle;
-//    float rotateDuration = fabs(degreesDiff / rotateDegreesPerSecond);
-//    [_player runAction:
-//     [CCSequence actions:
-//      [CCRotateTo actionWithDuration:rotateDuration angle:cocosAngle],
-//      [CCCallBlock actionWithBlock:^{
-//         // OK to add now - rotation is finished!
-//         [self addChild:_nextProjectile];
-//         [_projectiles addObject:_nextProjectile];
-//         
-//         // Release
-//         [_nextProjectile release];
-//         _nextProjectile = nil;
-//     }],
-//      nil]];
-//    
-//    // Move projectile to actual endpoint
-//    [_nextProjectile runAction:
-//     [CCSequence actions:
-//      [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
-//      [CCCallBlockN actionWithBlock:^(CCNode *node) {
-//         [_projectiles removeObject:node];
-//         [node removeFromParentAndCleanup:YES];
-//     }],
-//      nil]];
-//    
-//    _nextProjectile.tag = 2;
-//    
-////    [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
-//}
+
 
 -(void)playerMoveEnded {
     _moving = FALSE;
@@ -259,18 +193,39 @@ static CGRect screenRect;
 
     
     for (Enemy *e in _enemies) {
-        targetLoc = _player.position;
-        int distX = abs(e.position.x - _player.position.x);
-        int distY = abs(e.position.y - _player.position.y);
-        int distH = sqrt((distX*distX)+(distY*distY));
-        if (distH > 100) {
-            targetLoc = _player.position;
+        
+        if (e.targetLoc.x == -5000) {
+            //new Enemy seeks player 
+            e.targetLoc = _player.position;
+            e.currentAction = seek;
+            e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+            [e calculateAdjustedActionCoolDown];
+            
+        }else if (e.adjustedActionCoolDown > 5){
+            //going through current action
+            if (e.currentAction == seek) {
+                e.targetLoc = _player.position;
+            }
+            e.adjustedActionCoolDown--; 
+        }else{
+            //choose new action
+            if ([[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue] < 100.f) {
+                //Too close! Time to flee
+                e.currentAction = flee;
+                e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+                [e calculateAdjustedActionCoolDown];
+                e.targetLoc = CGPointMake(e.position.x + [Auxiliary generateRandomBetween:-500 andFinish:500], e.position.y + [Auxiliary generateRandomBetween:-500 andFinish:500]);
+            }
+//            else if ([[Auxiliary findDistanceFrom:e.position to:_player.position] intValue] < 200 && [[Auxiliary findDistanceFrom:e.position to:_player.position] intValue] > 50){
+//                //Too close! Time to flee
+//                e.currentAction = fire;
+//                e.currentActionCoolDown = [e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]];
+//                [e calculateAdjustedActionCoolDown];
+//                e.targetLoc = CGPointMake(((CGPoint)[Auxiliary findMidPointFrom:e.position to:_player.position]).x, ((CGPoint)[Auxiliary findMidPointFrom:e.position to:_player.position]).y);
+//            }
+            
         }
-        else{
-            targetLoc = CGPointMake(e.position.x + [Auxiliary generateRandomBetween:-500 andFinish:500], e.position.y + [Auxiliary generateRandomBetween:-500 andFinish:500]);
-        }
-                         
-        CGPoint desiredDirection=[Auxiliary normalizeVector:ccpSub(targetLoc, e.position)];
+        CGPoint desiredDirection=[Auxiliary normalizeVector:ccpSub(e.targetLoc, e.position)];
         velocity=ccpMult(desiredDirection, speed);
         e.position=ccpAdd(e.position, velocity);
         e.rotation=[Auxiliary angleForVector:velocity];
@@ -285,53 +240,10 @@ static CGRect screenRect;
         angle=angle+[Auxiliary generateRandomBetween:-angleNoise andFinish:angleNoise];
         CGPoint perimiterPoint=ccp(cosf(angle), sinf(angle));
         perimiterPoint=ccpMult(perimiterPoint, radius);
-        targetLoc=ccpAdd(circleLoc, perimiterPoint);
-    }
-    
-    
-//    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
-//    for (CCSprite *projectile in _projectiles) {
-//        
-//        BOOL enemyHit = FALSE;
-//        NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
-//        for (Enemy *enemy in _enemies) {
-//            
-//            if (CGRectIntersectsRect(projectile.boundingBox, enemy.boundingBox)) {
-//                enemyHit = TRUE;
-//                enemy.hp --;
-//                if (enemy.hp <= 0) {
-//                    [enemiesToDelete addObject:enemy];
-//                }
-//                break;
-//            }
-//        }
-//        
-//        for (CCSprite *enemy in enemiesToDelete) {
-//            
-//            [_enemies removeObject:enemy];
-//            [self removeChild:enemy cleanup:YES];
-//            
-//            _enemiesDestroyed++;
-//            [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
-//            if (_enemiesDestroyed > 30) {
-//                CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
-//                [[CCDirector sharedDirector] replaceScene:gameOverScene];
-//            }
-//        }
-//        
-//        if (enemyHit) {
-//            [projectilesToDelete addObject:projectile];
-////            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
-//        }
-//        [enemiesToDelete release];
-//    }
-//    
-//    for (CCSprite *projectile in projectilesToDelete) {
-//        [_projectiles removeObject:projectile];
-//        [self removeChild:projectile cleanup:YES];
-//    }
-//    [projectilesToDelete release];
+        e.targetLoc=ccpAdd(circleLoc, perimiterPoint);
+        }
 }
+    
 
 
 // on "dealloc" you need to release all your retained objects
@@ -349,10 +261,10 @@ static CGRect screenRect;
 #pragma mark - Math Methods
 
 -(void) setParameters {
-    radius = 10.0f;
-    distance = 300.0f;
-    angleNoise = 0.1f;
-    speed = 1.0f;
+    radius = 2.0f;
+    distance = 150.0f;
+    angleNoise = 0.05f;
+    speed = 1.f;
 }
 
 -(void)keepEnemyOnScreen:(Enemy*)enemy {
@@ -363,3 +275,117 @@ static CGRect screenRect;
 }
 
 @end
+
+
+//    NSMutableArray *projectilesToDelete = [[NSMutableArray alloc] init];
+//    for (CCSprite *projectile in _projectiles) {
+//
+//        BOOL enemyHit = FALSE;
+//        NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
+//        for (Enemy *enemy in _enemies) {
+//
+//            if (CGRectIntersectsRect(projectile.boundingBox, enemy.boundingBox)) {
+//                enemyHit = TRUE;
+//                enemy.hp --;
+//                if (enemy.hp <= 0) {
+//                    [enemiesToDelete addObject:enemy];
+//                }
+//                break;
+//            }
+//        }
+//
+//        for (CCSprite *enemy in enemiesToDelete) {
+//
+//            [_enemies removeObject:enemy];
+//            [self removeChild:enemy cleanup:YES];
+//
+//            _enemiesDestroyed++;
+//            [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
+//            if (_enemiesDestroyed > 30) {
+//                CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES];
+//                [[CCDirector sharedDirector] replaceScene:gameOverScene];
+//            }
+//        }
+//
+//        if (enemyHit) {
+//            [projectilesToDelete addObject:projectile];
+////            [[SimpleAudioEngine sharedEngine] playEffect:@"explosion.caf"];
+//        }
+//        [enemiesToDelete release];
+//    }
+//
+//    for (CCSprite *projectile in projectilesToDelete) {
+//        [_projectiles removeObject:projectile];
+//        [self removeChild:projectile cleanup:YES];
+//    }
+//    [projectilesToDelete release];
+
+
+
+//- (void)ccTouchesEnded:(NSSet *)touches withEvent:(UIEvent *)event {
+//
+//    if (_nextProjectile != nil) return;
+//
+//    // Choose one of the touches to work with
+//    UITouch *touch = [touches anyObject];
+//    CGPoint location = [self convertTouchToNodeSpace:touch];
+//
+//    // Set up initial location of projectile
+//    CGSize winSize = [[CCDirector sharedDirector] winSize];
+//    _nextProjectile = [[CCSprite spriteWithFile:@"Projectile.png"] retain];
+//    _nextProjectile.position = ccp(20, winSize.height/2);
+//
+//    // Determine offset of location to projectile
+//    CGPoint offset = ccpSub(location, _nextProjectile.position);
+//
+//    // Bail out if you are shooting down or backwards
+//    if (offset.x <= 0) return;
+//
+//    // Determine where you wish to shoot the projectile to
+//    int realX = winSize.width + (_nextProjectile.contentSize.width/2);
+//    float ratio = (float) offset.y / (float) offset.x;
+//    int realY = (realX * ratio) + _nextProjectile.position.y;
+//    CGPoint realDest = ccp(realX, realY);
+//
+//    // Determine the length of how far you're shooting
+//    int offRealX = realX - _nextProjectile.position.x;
+//    int offRealY = realY - _nextProjectile.position.y;
+//    float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
+//    float velocity = 480/1; // 480pixels/1sec
+//    float realMoveDuration = length/velocity;
+//
+//    // Determine angle to face
+//    float angleRadians = atanf((float)offRealY / (float)offRealX);
+//    float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
+//    float cocosAngle = -1 * angleDegrees;
+//    float rotateDegreesPerSecond = 180 / 0.5; // Would take 0.5 seconds to rotate 180 degrees, or half a circle
+//    float degreesDiff = _player.rotation - cocosAngle;
+//    float rotateDuration = fabs(degreesDiff / rotateDegreesPerSecond);
+//    [_player runAction:
+//     [CCSequence actions:
+//      [CCRotateTo actionWithDuration:rotateDuration angle:cocosAngle],
+//      [CCCallBlock actionWithBlock:^{
+//         // OK to add now - rotation is finished!
+//         [self addChild:_nextProjectile];
+//         [_projectiles addObject:_nextProjectile];
+//
+//         // Release
+//         [_nextProjectile release];
+//         _nextProjectile = nil;
+//     }],
+//      nil]];
+//
+//    // Move projectile to actual endpoint
+//    [_nextProjectile runAction:
+//     [CCSequence actions:
+//      [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+//      [CCCallBlockN actionWithBlock:^(CCNode *node) {
+//         [_projectiles removeObject:node];
+//         [node removeFromParentAndCleanup:YES];
+//     }],
+//      nil]];
+//
+//    _nextProjectile.tag = 2;
+//
+////    [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
+//}

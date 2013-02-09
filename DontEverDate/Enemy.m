@@ -17,12 +17,18 @@
         self.minMoveDuration = minMoveDuration;
         self.maxMoveDuration = maxMoveDuration;
         self.currentActionCoolDown = 5;
-        self.currentAction = wander;        //init enemy to wander
-        self.adjustedActionCoolDown = self.currentAction * 1000;
+        self.currentAction = 1;
+        self.adjustedActionCoolDown = nil;
+        self.targetLoc = CGPointMake(-5000, -1);
+        
     }
     return self;
 }
-
+-(void)calculateAdjustedActionCoolDown{
+    
+    self.adjustedActionCoolDown = self.currentActionCoolDown / 3000;
+    
+}
 @end
 
 @implementation Cupid 
@@ -44,10 +50,7 @@
 - (id)init {
     if ((self = [super initWithFile:@"BruteCupid.png" hp:3 minMoveDuration:6 maxMoveDuration:12])) {
         
-//        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:2.0],[NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:5.0], [NSNumber numberWithFloat:1.0], [NSNumber numberWithFloat:0.01], nil] forKeys:[NSArray arrayWithObjects:wander,seek, flee, fire, tired, nil]];
-        
-        self.actionCoolDown = [NSMutableDictionary dictionaryWithDictionary:@{@"test": @"win"}];
-
+        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:2.0],[NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:1.0], [NSNumber numberWithFloat:0.01], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
         
     }
     return self;

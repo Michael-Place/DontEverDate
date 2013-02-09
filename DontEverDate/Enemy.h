@@ -25,13 +25,16 @@ typedef NSUInteger action;
 @property (nonatomic, assign) int hp;
 @property (nonatomic, assign) int minMoveDuration;
 @property (nonatomic, assign) int maxMoveDuration;
-@property (nonatomic, retain) NSMutableDictionary *actionCoolDown;    //copy for mutable pointer (retain for pointers)
+@property (nonatomic, copy) NSMutableDictionary *actionCoolDown;    //copy for mutable pointer (retain for pointers)
 @property (nonatomic, assign) int currentActionCoolDown;
 @property (nonatomic, assign) int adjustedActionCoolDown;
+@property (nonatomic, assign) CGPoint targetLoc;
 
 
 
 - (id)initWithFile:(NSString *)file hp:(int)hp minMoveDuration:(int)minMoveDuration maxMoveDuration:(int)maxMoveDuration;
+
+-(void)calculateAdjustedActionCoolDown;
 
 @end
 
