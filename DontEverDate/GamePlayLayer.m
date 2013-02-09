@@ -42,7 +42,7 @@ static CGRect screenRect;
 
 - (void) addEnemy {
     
-    Enemy * enemy = nil;
+    Enemy * enemy;
     if (arc4random() % 2 == 0) {
         enemy = [[[Cupid alloc] init] autorelease];
     } else {

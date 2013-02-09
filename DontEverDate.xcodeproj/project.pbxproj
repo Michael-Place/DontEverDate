@@ -135,7 +135,6 @@
 		E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0A516BF38CA005CB026 /* IntroLayer.m */; };
 		E901F0AE16BF3A07005CB026 /* Enemy.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0AC16BF3A07005CB026 /* Enemy.png */; };
 		E901F0AF16BF3A07005CB026 /* Player.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0AD16BF3A07005CB026 /* Player.png */; };
-		E901F0B416BF3B2E005CB026 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B316BF3B2E005CB026 /* Enemy.m */; };
 		E901F0BB16BF4467005CB026 /* GameOverLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0BA16BF4024005CB026 /* GameOverLayer.m */; };
 		E901F0BC16BF446D005CB026 /* LevelManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B616BF3C1F005CB026 /* LevelManager.m */; };
 		E901F0BD16BF447E005CB026 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B816BF3C49005CB026 /* Level.m */; };
@@ -144,6 +143,7 @@
 		E901F0C416BF4946005CB026 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0C316BF4946005CB026 /* Projectile.png */; };
 		E901F0CA16BF4CA7005CB026 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0C916BF4CA7005CB026 /* Player.m */; };
 		E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0CF16BF4F77005CB026 /* HUDLayer.m */; };
+		E9CBF11B16C48B05008BB5F8 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CBF11A16C48ADA008BB5F8 /* Enemy.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -411,8 +411,6 @@
 		E901F0A516BF38CA005CB026 /* IntroLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = IntroLayer.m; sourceTree = "<group>"; };
 		E901F0AC16BF3A07005CB026 /* Enemy.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Enemy.png; sourceTree = "<group>"; };
 		E901F0AD16BF3A07005CB026 /* Player.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Player.png; sourceTree = "<group>"; };
-		E901F0B216BF3B2E005CB026 /* Enemy.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
-		E901F0B316BF3B2E005CB026 /* Enemy.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 		E901F0B516BF3C1F005CB026 /* LevelManager.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = LevelManager.h; sourceTree = "<group>"; };
 		E901F0B616BF3C1F005CB026 /* LevelManager.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = LevelManager.m; sourceTree = "<group>"; };
 		E901F0B716BF3C49005CB026 /* Level.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Level.h; sourceTree = "<group>"; };
@@ -426,6 +424,8 @@
 		E901F0C916BF4CA7005CB026 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		E901F0CE16BF4F77005CB026 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		E901F0CF16BF4F77005CB026 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
+		E9CBF11916C48ADA008BB5F8 /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
+		E9CBF11A16C48ADA008BB5F8 /* Enemy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -885,10 +885,10 @@
 		E901F0CB16BF4CDA005CB026 /* Characters */ = {
 			isa = PBXGroup;
 			children = (
-				E901F0B216BF3B2E005CB026 /* Enemy.h */,
-				E901F0B316BF3B2E005CB026 /* Enemy.m */,
 				E901F0C816BF4CA7005CB026 /* Player.h */,
 				E901F0C916BF4CA7005CB026 /* Player.m */,
+				E9CBF11916C48ADA008BB5F8 /* Enemy.h */,
+				E9CBF11A16C48ADA008BB5F8 /* Enemy.m */,
 			);
 			name = Characters;
 			sourceTree = "<group>";
@@ -1011,6 +1011,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E9CBF11B16C48B05008BB5F8 /* Enemy.m in Sources */,
 				E901F0BD16BF447E005CB026 /* Level.m in Sources */,
 				E901F0BC16BF446D005CB026 /* LevelManager.m in Sources */,
 				E901F0BB16BF4467005CB026 /* GameOverLayer.m in Sources */,
@@ -1118,7 +1119,6 @@
 				E901F0A016BF38CA005CB026 /* AppDelegate.m in Sources */,
 				E901F0A316BF38CA005CB026 /* GamePlayLayer.m in Sources */,
 				E901F0A616BF38CA005CB026 /* IntroLayer.m in Sources */,
-				E901F0B416BF3B2E005CB026 /* Enemy.m in Sources */,
 				E901F0CA16BF4CA7005CB026 /* Player.m in Sources */,
 				E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */,
 			);
@@ -1224,6 +1224,7 @@
 				E901F0AB16BF38CA005CB026 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
