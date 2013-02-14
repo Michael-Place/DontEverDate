@@ -9,7 +9,13 @@
 #import <Foundation/Foundation.h>
 #import "Level.h"
 
-@interface LevelManager : NSObject
+@interface LevelManager : NSObject {
+    int _scoreForSession;
+    int _healthForSession;
+}
+
+@property int scoreForSession;
+@property int healthForSession;
 
 + (LevelManager *)sharedInstance;
 - (Level *)curLevel;

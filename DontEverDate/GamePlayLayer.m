@@ -99,8 +99,8 @@ static CGRect screenRect;
         }
         // Initialize HUD
         _hud = hud;
-        [_hud setPlayerHealthProgress:_player.hp];
-        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
+        [_hud setPlayerHealthProgress:[[LevelManager sharedInstance] healthForSession]];
+        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", [[LevelManager sharedInstance] scoreForSession]]];
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
         CCSprite *background = [CCSprite spriteWithFile:@"game_background.png"];
@@ -200,7 +200,12 @@ static CGRect screenRect;
 }
 
 - (void)update:(ccTime)dt {
+    [self manageEnemyCasualties];
+    [self manageEnemyMovement];
+    [self manageProjectiles];
+}
 
+- (void)manageEnemyCasualties {
     NSMutableArray *enemiesToDelete = [[NSMutableArray alloc] init];
     for (Enemy *e in _enemies) {
         BOOL enemyHit = FALSE;
@@ -220,15 +225,16 @@ static CGRect screenRect;
         [self removeChild:enemy cleanup:YES];
         
         _enemiesDestroyed++;
-        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", _enemiesDestroyed]];
+        [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", ([[LevelManager sharedInstance] scoreForSession] + _enemiesDestroyed)]];
         if (_enemiesDestroyed > _enemyLimit) {
-            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES andScore:_enemiesDestroyed];
+            CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES andScore:_enemiesDestroyed andHealth:_player.hp];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
     [enemiesToDelete release];
+}
 
-    
+- (void)manageEnemyMovement {
     for (Enemy *e in _enemies) {
         //initialization
         if (e.targetLoc.x == -5000) {
@@ -311,7 +317,7 @@ static CGRect screenRect;
                             e.targetLoc = CGPointMake(e.position.x + [[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue], e.position.y + [[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue]);
                         }
                         break;
-
+                        
                     }
                 }
                 
@@ -321,7 +327,7 @@ static CGRect screenRect;
         CGPoint desiredDirection=[Auxiliary normalizeVector:ccpSub(e.targetLoc, e.position)];
         velocity=ccpMult(desiredDirection, speed);
         e.position=ccpAdd(e.position, velocity);
-//        e.rotation=[Auxiliary angleForVector:velocity];
+        //        e.rotation=[Auxiliary angleForVector:velocity];
         [self keepEnemyOnScreen:e];
         
         // find the center of the circle
@@ -334,9 +340,7 @@ static CGRect screenRect;
         CGPoint perimiterPoint=ccp(cosf(angle), sinf(angle));
         perimiterPoint=ccpMult(perimiterPoint, radius);
         e.targetLoc=ccpAdd(circleLoc, perimiterPoint);
-        }
-    
-    [self manageProjectiles];
+    }
 }
     
 - (void)fireWithEnemy:(Enemy*)_enemy {
@@ -433,7 +437,7 @@ static CGRect screenRect;
                     _player.hp --;
                     [_hud setPlayerHealthProgress:_player.hp];
                     if (_player.hp <= 0) {
-                        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO andScore:_enemiesDestroyed];
+                        CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO andScore:_enemiesDestroyed andHealth:_player.hp];
                         [[CCDirector sharedDirector] replaceScene:gameOverScene];
                     }
                 }

@@ -7,11 +7,12 @@
 //
 
 #import "Player.h"
+#import "LevelManager.h"
 
 @implementation Player
 - (id)initWithFile:(NSString *)file hp:(int)hp {
     if ((self = [super initWithFile:file])) {
-        self.hp = hp;
+        self.hp = [[LevelManager sharedInstance] healthForSession];
     }
     return self;
 }

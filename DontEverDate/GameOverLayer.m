@@ -14,17 +14,19 @@
 @implementation GameOverLayer
 @synthesize gameEndScore = _gameEndScore;
 
-+(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score{
++(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score andHealth:(float)health{
     CCScene *scene = [CCScene node];
-    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon:won andScore:[NSNumber numberWithInt:score]] autorelease];
+    GameOverLayer *layer = [[[GameOverLayer alloc] initWithWon:won andScore:[NSNumber numberWithInt:score] andHealth:health] autorelease];
     [scene addChild: layer];
     return scene;
 }
 
-- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score{
+- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score andHealth:(float)health{
     if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
         NSString * message;
         self.gameEndScore = score;
+        [[LevelManager sharedInstance] setScoreForSession:([[LevelManager sharedInstance] scoreForSession] + [self.gameEndScore integerValue])];
+        [[LevelManager sharedInstance] setHealthForSession:health];
         if (won) {
             [[LevelManager sharedInstance] nextLevel];
             Level * curLevel = [[LevelManager sharedInstance] curLevel];
@@ -41,11 +43,13 @@
                 message = @"You Won!";
                 [self addGameOverButtonsToLayer];
                 [self addHighScoreEntry];
+                [self clearSessionValues];  
             }
         } else {
             message = @"You Lose :[";
             [self addGameOverButtonsToLayer];
             [self addHighScoreEntry];
+            [self clearSessionValues];
         }
 
 
@@ -56,6 +60,11 @@
         [self addChild:label];
     }
     return self;
+}
+
+-(void)clearSessionValues {
+    [[LevelManager sharedInstance] setHealthForSession:20];
+    [[LevelManager sharedInstance] setScoreForSession:0];
 }
 
 -(void)callMichael {
@@ -78,7 +87,7 @@
 }
 
 -(void)addHighScoreEntry {
-    [HighScoreManager addEntryToHighScoreDictionaryWith:@"Static Name" andScore:self.gameEndScore];
+    [HighScoreManager addEntryToHighScoreDictionaryWith:@"Mary Ohm" andScore:[NSNumber numberWithInt:[[LevelManager sharedInstance] scoreForSession]]];
 }
 
 -(void)playAgain {

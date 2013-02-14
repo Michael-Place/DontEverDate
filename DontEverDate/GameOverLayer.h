@@ -14,7 +14,7 @@
 
 @property (nonatomic, retain) NSNumber *gameEndScore;
 
-+(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score;
-- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score;
++(CCScene *) sceneWithWon:(BOOL)won andScore:(int)score andHealth:(float)health;
+- (id)initWithWon:(BOOL)won andScore:(NSNumber*)score andHealth:(float)health;
 
 @end

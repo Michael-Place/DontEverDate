@@ -24,7 +24,7 @@
         _playerHealthLabel.position = ccp(winSize.width*0.08, winSize.height * 0.95);
         _healthBar = [[UIProgressView alloc] initWithFrame:CGRectMake(winSize.width*0.15, winSize.height * 0.04, 90, 30)];
         [_healthBar setTrackTintColor:[UIColor purpleColor]];
-        [_healthBar setProgress:1 animated:YES];
+        [_healthBar setProgress:1.0f animated:NO];
         
         [[[CCDirector sharedDirector] view] addSubview:_healthBar];
         [self addChild:_brokenHeartScoreLabel];
