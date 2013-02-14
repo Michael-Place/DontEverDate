@@ -195,26 +195,68 @@ static CGRect screenRect;
     for (Enemy *e in _enemies) {
         
         if (e.targetLoc.x == -5000) {
-            //new Enemy seeks player 
+            //new Enemy seeks player
             e.targetLoc = _player.position;
             e.currentAction = seek;
             e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
             [e calculateAdjustedActionCoolDown];
             
-        }else if (e.adjustedActionCoolDown > 5){
-            //going through current action
-            if (e.currentAction == seek) {
-                e.targetLoc = _player.position;
-            }
-            e.adjustedActionCoolDown--; 
+        }else if([[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue] < 500.f) {
+            //Too close! Time to flee
+            
+            e.currentAction = flee;
+            e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+            [e calculateAdjustedActionCoolDown];
+            e.targetLoc = CGPointMake(e.position.x + [Auxiliary generateRandomBetween:-500 andFinish:500], e.position.y + [Auxiliary generateRandomBetween:-500 andFinish:500]);
         }else{
             //choose new action
-            if ([[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue] < 100.f) {
-                //Too close! Time to flee
-                e.currentAction = flee;
-                e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
-                [e calculateAdjustedActionCoolDown];
-                e.targetLoc = CGPointMake(e.position.x + [Auxiliary generateRandomBetween:-500 andFinish:500], e.position.y + [Auxiliary generateRandomBetween:-500 andFinish:500]);
+            if (e.adjustedActionCoolDown > 5){
+                //going through current action
+                if (e.currentAction == seek) {
+                    e.targetLoc = _player.position;
+                }
+                e.adjustedActionCoolDown--;
+            }
+            else {
+                int selector = [Auxiliary generateRandomBetween:1 andFinish:[e.actionCoolDown count] + 1];
+                switch (selector) {
+                    case tired: {
+                        e.targetLoc = e.position;
+                        e.currentAction = tired;
+                        e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+                        [e calculateAdjustedActionCoolDown];
+                        break;
+                    }
+                    case fire: {
+                        e.targetLoc = e.position;
+                        e.currentAction = fire;
+                        e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+                        [e calculateAdjustedActionCoolDown];
+                        
+                        if (e.adjustedActionCoolDown < e.currentActionCoolDown * 1001) {
+                            CCAction *myFire = [CCCallBlock actionWithBlock:^{
+                                [self fireWithEnemy:e];
+                            }];
+                            [e runAction:myFire];
+                        }else if (e.adjustedActionCoolDown == e.currentActionCoolDown * 500){
+                            e.targetLoc = CGPointMake(e.position.x + [[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue], e.position.y + [[Auxiliary findDistanceFrom:e.position to:_player.position] floatValue]);
+                        }
+                        break;
+                    }
+                    case seek: {
+                        e.targetLoc = _player.position;
+                        e.currentAction = seek;
+                        e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
+                        [e calculateAdjustedActionCoolDown];
+                        break;
+                    }
+                        
+                    default: {
+                        
+                        break;
+                    }
+                }
+                
             }
 //            else if ([[Auxiliary findDistanceFrom:e.position to:_player.position] intValue] < 200 && [[Auxiliary findDistanceFrom:e.position to:_player.position] intValue] > 50){
 //                //Too close! Time to flee
@@ -244,7 +286,68 @@ static CGRect screenRect;
         }
 }
     
-
+- (void)fireWithEnemy:(Enemy*)_enemy {
+    if (_nextProjectile != nil) return;
+        CGPoint location = _player.position;
+    
+        // Set up initial location of projectile
+        CGSize winSize = [[CCDirector sharedDirector] winSize];
+        _nextProjectile = [[CCSprite spriteWithFile:@"Projectile.png"] retain];
+        _nextProjectile.position = ccp(_enemy.position.x + 20, _enemy.position.y);
+    
+        // Determine offset of location to projectile
+        CGPoint offset = ccpSub(location, _nextProjectile.position);
+    
+        // Bail out if you are shooting down or backwards
+//        if (offset.x <= 0) return;
+    
+        // Determine where you wish to shoot the projectile to
+        int realX = winSize.width + (_nextProjectile.contentSize.width/2);
+        float ratio = (float) offset.y / (float) offset.x;
+        int realY = (realX * ratio) + _nextProjectile.position.y;
+        CGPoint realDest = ccp(realX, realY);
+    
+        // Determine the length of how far you're shooting
+        int offRealX = realX - _nextProjectile.position.x;
+        int offRealY = realY - _nextProjectile.position.y;
+        float length = sqrtf((offRealX*offRealX)+(offRealY*offRealY));
+        float _velocity = 480/1; // 480pixels/1sec
+        float realMoveDuration = length/_velocity;
+    
+        // Determine angle to face
+        float angleRadians = atanf((float)offRealY / (float)offRealX);
+        float angleDegrees = CC_RADIANS_TO_DEGREES(angleRadians);
+        float cocosAngle = -1 * angleDegrees;
+        float rotateDegreesPerSecond = 180 / 0.5; // Would take 0.5 seconds to rotate 180 degrees, or half a circle
+        float degreesDiff = _enemy.rotation - cocosAngle;
+        float rotateDuration = fabs(degreesDiff / rotateDegreesPerSecond);
+        [_enemy runAction:
+         [CCSequence actions:
+          [CCRotateTo actionWithDuration:rotateDuration angle:cocosAngle],
+          [CCCallBlock actionWithBlock:^{
+             // OK to add now - rotation is finished!
+             [self addChild:_nextProjectile];
+             [_projectiles addObject:_nextProjectile];
+             // Release
+             [_nextProjectile release];
+             _nextProjectile = nil;
+         }],
+          nil]];
+    
+        // Move projectile to actual endpoint
+        [_nextProjectile runAction:
+         [CCSequence actions:
+          [CCMoveTo actionWithDuration:realMoveDuration position:realDest],
+          [CCCallBlockN actionWithBlock:^(CCNode *node) {
+             [_projectiles removeObject:node];
+             [node removeFromParentAndCleanup:YES];
+         }],
+          nil]];
+    
+        _nextProjectile.tag = 2;
+    
+    //    [[SimpleAudioEngine sharedEngine] playEffect:@"pew-pew-lei.caf"];
+}
 
 // on "dealloc" you need to release all your retained objects
 - (void) dealloc

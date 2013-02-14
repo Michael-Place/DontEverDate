@@ -26,7 +26,7 @@
 }
 -(void)calculateAdjustedActionCoolDown{
     
-    self.adjustedActionCoolDown = self.currentActionCoolDown / 3000;
+    self.adjustedActionCoolDown = self.currentActionCoolDown * 100;
     
 }
 @end
