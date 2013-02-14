@@ -10,6 +10,7 @@
 #import <GameKit/GameKit.h>
 #import "cocos2d.h"
 #import "HUDLayer.h"
+#import "Player.h"
 @interface GamePlayLayer: CCLayerColor
 {
     float speed;
@@ -26,13 +27,15 @@
     NSMutableArray * _projectiles;
     int _enemiesDestroyed;
     int _enemyLimit;
-    CCSprite *_player;
+    Player *_player;
     CCSprite *_nextProjectile;
     CCAction *_moveAction;
+    CCAction *_walkAction;
     BOOL _moving;
 }
 
 @property (nonatomic, retain) CCAction *moveAction;
+@property (nonatomic, retain) CCAction *walkAction;
 @property (nonatomic, retain) CCSprite *player;
 
 // returns a CCScene that contains the GamePlayLayer as the only child

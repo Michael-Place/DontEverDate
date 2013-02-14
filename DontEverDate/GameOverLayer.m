@@ -24,8 +24,8 @@
 - (id)initWithWon:(BOOL)won andScore:(NSNumber*)score{
     if ((self = [super initWithColor:ccc4(255, 255, 255, 255)])) {
         NSString * message;
+        self.gameEndScore = score;
         if (won) {
-            self.gameEndScore = score;
             [[LevelManager sharedInstance] nextLevel];
             Level * curLevel = [[LevelManager sharedInstance] curLevel];
             if (curLevel) {

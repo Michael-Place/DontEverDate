@@ -15,6 +15,13 @@
 		E901096116C60BA40023B811 /* HighScoreManager.m in Sources */ = {isa = PBXBuildFile; fileRef = E901096016C60BA30023B811 /* HighScoreManager.m */; };
 		E901096316C60D860023B811 /* HighScore.plist in Resources */ = {isa = PBXBuildFile; fileRef = E901096216C60D860023B811 /* HighScore.plist */; };
 		E901096516C6105D0023B811 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E901096416C6105D0023B811 /* Default-568h@2x.png */; };
+		E901BDED16CCC3B60061A22E /* mary.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDEB16CCC3B60061A22E /* mary.png */; };
+		E901BDEE16CCC3B60061A22E /* mary.plist in Resources */ = {isa = PBXBuildFile; fileRef = E901BDEC16CCC3B60061A22E /* mary.plist */; };
+		E901BDF116CCC67F0061A22E /* cupid_left.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDEF16CCC67F0061A22E /* cupid_left.png */; };
+		E901BDF216CCC67F0061A22E /* cupid_right.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDF016CCC67F0061A22E /* cupid_right.png */; };
+		E901BDF416CCC7290061A22E /* game_background.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDF316CCC7290061A22E /* game_background.png */; };
+		E901BDF716CCC8200061A22E /* mary_start.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDF516CCC8200061A22E /* mary_start.png */; };
+		E901BDF816CCC8200061A22E /* mary_finish.png in Resources */ = {isa = PBXBuildFile; fileRef = E901BDF616CCC8200061A22E /* mary_finish.png */; };
 		E901EF1516BF38C8005CB026 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1416BF38C8005CB026 /* QuartzCore.framework */; };
 		E901EF1716BF38C8005CB026 /* OpenGLES.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1616BF38C8005CB026 /* OpenGLES.framework */; };
 		E901EF1916BF38C8005CB026 /* OpenAL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF1816BF38C8005CB026 /* OpenAL.framework */; };
@@ -148,10 +155,10 @@
 		E901F0BD16BF447E005CB026 /* Level.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0B816BF3C49005CB026 /* Level.m */; };
 		E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BE16BF46D9005CB026 /* BruteCupid.png */; };
 		E901F0C116BF46D9005CB026 /* Cupid.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0BF16BF46D9005CB026 /* Cupid.png */; };
-		E901F0C416BF4946005CB026 /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E901F0C316BF4946005CB026 /* Projectile.png */; };
 		E901F0CA16BF4CA7005CB026 /* Player.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0C916BF4CA7005CB026 /* Player.m */; };
 		E901F0D016BF4F77005CB026 /* HUDLayer.m in Sources */ = {isa = PBXBuildFile; fileRef = E901F0CF16BF4F77005CB026 /* HUDLayer.m */; };
 		E98AEB6E16C5D52400D07CFC /* Auxiliary.m in Sources */ = {isa = PBXBuildFile; fileRef = E98AEB6D16C5D52400D07CFC /* Auxiliary.m */; };
+		E98D76AE16CD40A9008E9F1E /* Projectile.png in Resources */ = {isa = PBXBuildFile; fileRef = E98D76AD16CD40A9008E9F1E /* Projectile.png */; };
 		E9CBF11B16C48B05008BB5F8 /* Enemy.m in Sources */ = {isa = PBXBuildFile; fileRef = E9CBF11A16C48ADA008BB5F8 /* Enemy.m */; };
 /* End PBXBuildFile section */
 
@@ -166,6 +173,13 @@
 		E901096016C60BA30023B811 /* HighScoreManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HighScoreManager.m; sourceTree = "<group>"; };
 		E901096216C60D860023B811 /* HighScore.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = HighScore.plist; sourceTree = "<group>"; };
 		E901096416C6105D0023B811 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
+		E901BDEB16CCC3B60061A22E /* mary.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mary.png; path = Resources/mary.png; sourceTree = "<group>"; };
+		E901BDEC16CCC3B60061A22E /* mary.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = mary.plist; path = Resources/mary.plist; sourceTree = "<group>"; };
+		E901BDEF16CCC67F0061A22E /* cupid_left.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_left.png; sourceTree = "<group>"; };
+		E901BDF016CCC67F0061A22E /* cupid_right.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_right.png; sourceTree = "<group>"; };
+		E901BDF316CCC7290061A22E /* game_background.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = game_background.png; sourceTree = "<group>"; };
+		E901BDF516CCC8200061A22E /* mary_start.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mary_start.png; path = Resources/mary_start.png; sourceTree = "<group>"; };
+		E901BDF616CCC8200061A22E /* mary_finish.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = mary_finish.png; path = Resources/mary_finish.png; sourceTree = "<group>"; };
 		E901EF1116BF38C8005CB026 /* DontEverDate.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DontEverDate.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E901EF1416BF38C8005CB026 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		E901EF1616BF38C8005CB026 /* OpenGLES.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGLES.framework; path = System/Library/Frameworks/OpenGLES.framework; sourceTree = SDKROOT; };
@@ -438,13 +452,13 @@
 		E901F0BA16BF4024005CB026 /* GameOverLayer.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GameOverLayer.m; sourceTree = "<group>"; };
 		E901F0BE16BF46D9005CB026 /* BruteCupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = BruteCupid.png; sourceTree = "<group>"; };
 		E901F0BF16BF46D9005CB026 /* Cupid.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Cupid.png; sourceTree = "<group>"; };
-		E901F0C316BF4946005CB026 /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 		E901F0C816BF4CA7005CB026 /* Player.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Player.h; sourceTree = "<group>"; };
 		E901F0C916BF4CA7005CB026 /* Player.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Player.m; sourceTree = "<group>"; };
 		E901F0CE16BF4F77005CB026 /* HUDLayer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HUDLayer.h; sourceTree = "<group>"; };
 		E901F0CF16BF4F77005CB026 /* HUDLayer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HUDLayer.m; sourceTree = "<group>"; };
 		E98AEB6C16C5D52400D07CFC /* Auxiliary.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Auxiliary.h; sourceTree = "<group>"; };
 		E98AEB6D16C5D52400D07CFC /* Auxiliary.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Auxiliary.m; sourceTree = "<group>"; };
+		E98D76AD16CD40A9008E9F1E /* Projectile.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Projectile.png; sourceTree = "<group>"; };
 		E9CBF11916C48ADA008BB5F8 /* Enemy.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = Enemy.h; sourceTree = "<group>"; };
 		E9CBF11A16C48ADA008BB5F8 /* Enemy.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = Enemy.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -886,6 +900,12 @@
 		E901F0B016BF3A0B005CB026 /* Character Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E901BDF516CCC8200061A22E /* mary_start.png */,
+				E901BDF616CCC8200061A22E /* mary_finish.png */,
+				E901BDEF16CCC67F0061A22E /* cupid_left.png */,
+				E901BDF016CCC67F0061A22E /* cupid_right.png */,
+				E901BDEB16CCC3B60061A22E /* mary.png */,
+				E901BDEC16CCC3B60061A22E /* mary.plist */,
 				E901F0BE16BF46D9005CB026 /* BruteCupid.png */,
 				E901F0BF16BF46D9005CB026 /* Cupid.png */,
 				E901F0AC16BF3A07005CB026 /* Enemy.png */,
@@ -904,7 +924,8 @@
 		E901F0C216BF493B005CB026 /* Game Items */ = {
 			isa = PBXGroup;
 			children = (
-				E901F0C316BF4946005CB026 /* Projectile.png */,
+				E98D76AD16CD40A9008E9F1E /* Projectile.png */,
+				E901BDF316CCC7290061A22E /* game_background.png */,
 			);
 			name = "Game Items";
 			sourceTree = "<group>";
@@ -1033,13 +1054,20 @@
 				E901F0AF16BF3A07005CB026 /* Player.png in Resources */,
 				E901F0C016BF46D9005CB026 /* BruteCupid.png in Resources */,
 				E901F0C116BF46D9005CB026 /* Cupid.png in Resources */,
-				E901F0C416BF4946005CB026 /* Projectile.png in Resources */,
 				E901095816C5E54C0023B811 /* Button1.png in Resources */,
 				E901095916C5E54C0023B811 /* Button1Sel.png in Resources */,
 				E901095A16C5E54C0023B811 /* Button2.png in Resources */,
 				E901095B16C5E54C0023B811 /* Button2Sel.png in Resources */,
 				E901096316C60D860023B811 /* HighScore.plist in Resources */,
 				E901096516C6105D0023B811 /* Default-568h@2x.png in Resources */,
+				E901BDED16CCC3B60061A22E /* mary.png in Resources */,
+				E901BDEE16CCC3B60061A22E /* mary.plist in Resources */,
+				E901BDF116CCC67F0061A22E /* cupid_left.png in Resources */,
+				E901BDF216CCC67F0061A22E /* cupid_right.png in Resources */,
+				E901BDF416CCC7290061A22E /* game_background.png in Resources */,
+				E901BDF716CCC8200061A22E /* mary_start.png in Resources */,
+				E901BDF816CCC8200061A22E /* mary_finish.png in Resources */,
+				E98D76AE16CD40A9008E9F1E /* Projectile.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -34,9 +34,9 @@
 @implementation Cupid 
 
 - (id)init {
-    if ((self = [super initWithFile:@"Cupid.png" hp:1 minMoveDuration:3 maxMoveDuration:5])) {
+    if ((self = [super initWithFile:@"cupid_left.png" hp:1 minMoveDuration:3 maxMoveDuration:5])) {
        
-        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0],[NSNumber numberWithFloat:7.0], [NSNumber numberWithFloat:18.0], [NSNumber numberWithFloat:300.0], [NSNumber numberWithFloat:0.5], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
+        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0],[NSNumber numberWithFloat:7.0], [NSNumber numberWithFloat:18.0], [NSNumber numberWithFloat:1.0], [NSNumber numberWithFloat:0.5], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
         
     }
     return self;
@@ -48,7 +48,7 @@
 @implementation BruteCupid
 
 - (id)init {
-    if ((self = [super initWithFile:@"BruteCupid.png" hp:3 minMoveDuration:6 maxMoveDuration:12])) {
+    if ((self = [super initWithFile:@"cupid_right.png" hp:3 minMoveDuration:6 maxMoveDuration:12])) {
         
         self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:2.0],[NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:1.0], [NSNumber numberWithFloat:0.01], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
         

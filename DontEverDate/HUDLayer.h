@@ -12,9 +12,9 @@
 @interface HUDLayer : CCLayer {
     CCLabelTTF * _brokenHeartScoreLabel;
     CCLabelTTF * _playerHealthLabel;
+    UIProgressView *_healthBar;
 }
 
 - (void)setBrokenHeartScoreString:(NSString *)string;
-- (void)setPlayerHealthString:(NSString *)string;
-
+- (void)setPlayerHealthProgress:(int)currHealth;
 @end

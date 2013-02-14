@@ -17,16 +17,29 @@
          landmarkType = "5">
       </FileBreakpoint>
       <FileBreakpoint
-         shouldBeEnabled = "Yes"
+         shouldBeEnabled = "No"
          ignoreCount = "0"
          continueAfterRunningActions = "No"
          filePath = "DontEverDate/GamePlayLayer.m"
-         timestampString = "382502060.576308"
+         timestampString = "382552851.31522"
          startingColumnNumber = "9223372036854775807"
          endingColumnNumber = "9223372036854775807"
-         startingLineNumber = "220"
-         endingLineNumber = "220"
-         landmarkName = "-update:"
+         startingLineNumber = "436"
+         endingLineNumber = "436"
+         landmarkName = "-manageProjectiles"
+         landmarkType = "5">
+      </FileBreakpoint>
+      <FileBreakpoint
+         shouldBeEnabled = "No"
+         ignoreCount = "0"
+         continueAfterRunningActions = "No"
+         filePath = "DontEverDate/GamePlayLayer.m"
+         timestampString = "382552879.107758"
+         startingColumnNumber = "9223372036854775807"
+         endingColumnNumber = "9223372036854775807"
+         startingLineNumber = "434"
+         endingLineNumber = "434"
+         landmarkName = "-manageProjectiles"
          landmarkType = "5">
       </FileBreakpoint>
    </FileBreakpoints>
