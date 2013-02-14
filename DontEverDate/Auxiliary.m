@@ -13,7 +13,9 @@
 
 
 +(float)generateRandomBetween:(float)start andFinish:(float)finish {
-    float randomFloat = (arc4random()%1000)/1000;
+    float randomFloat = arc4random();
+    randomFloat = randomFloat / finish;
+    randomFloat = (int)randomFloat % ((int)finish+1);
     return randomFloat*(finish-start)+start;
 }
 
