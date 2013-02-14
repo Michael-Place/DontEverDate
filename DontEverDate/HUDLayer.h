@@ -15,6 +15,8 @@
     UIProgressView *_healthBar;
 }
 
+@property (nonatomic,retain)UIProgressView *healthBar;
+
 - (void)setBrokenHeartScoreString:(NSString *)string;
 - (void)setPlayerHealthProgress:(int)currHealth;
 @end

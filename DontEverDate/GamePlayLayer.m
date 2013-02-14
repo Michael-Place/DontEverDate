@@ -99,11 +99,13 @@ static CGRect screenRect;
         }
         // Initialize HUD
         _hud = hud;
+        [[_hud healthBar] setHidden:NO];
         [_hud setPlayerHealthProgress:[[LevelManager sharedInstance] healthForSession]];
         [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", [[LevelManager sharedInstance] scoreForSession]]];
         
         CGSize winSize = [CCDirector sharedDirector].winSize;
-        CCSprite *background = [CCSprite spriteWithFile:@"game_background.png"];
+        CCSprite *background = [CCSprite spriteWithFile:@"game_background.png" rect:CGRectMake(0, 0, winSize.width, winSize.height)];
+
         background.position = CGPointMake(winSize.width/2, winSize.height/2);
         [self addChild:background z:0];
         
@@ -228,6 +230,7 @@ static CGRect screenRect;
         [_hud setBrokenHeartScoreString:[NSString stringWithFormat:@"Broken Hearts: %i", ([[LevelManager sharedInstance] scoreForSession] + _enemiesDestroyed)]];
         if (_enemiesDestroyed > _enemyLimit) {
             CCScene *gameOverScene = [GameOverLayer sceneWithWon:YES andScore:_enemiesDestroyed andHealth:_player.hp];
+            [[_hud healthBar] setHidden:YES];
             [[CCDirector sharedDirector] replaceScene:gameOverScene];
         }
     }
@@ -438,6 +441,7 @@ static CGRect screenRect;
                     [_hud setPlayerHealthProgress:_player.hp];
                     if (_player.hp <= 0) {
                         CCScene *gameOverScene = [GameOverLayer sceneWithWon:NO andScore:_enemiesDestroyed andHealth:_player.hp];
+                        [[_hud healthBar] setHidden:YES];
                         [[CCDirector sharedDirector] replaceScene:gameOverScene];
                     }
                 }

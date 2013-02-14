@@ -11,7 +11,7 @@
 
 
 @implementation HUDLayer
-
+@synthesize healthBar = _healthBar;
 - (id)init {
     
     if ((self = [super init])) {

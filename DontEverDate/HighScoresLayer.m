@@ -8,6 +8,8 @@
 
 #import "HighScoresLayer.h"
 #import "HighScoreManager.h"
+#import "UIColor+UIColor_Helper.h"
+#import "IntroLayer.h"
 
 @implementation HighScoresLayer
 
@@ -29,6 +31,12 @@
 -(id)init {
     if (self = [super initWithColor:ccc4(255, 255, 255, 255)]) {
         int margin = 40;
+        CGSize winSize = [CCDirector sharedDirector].winSize;
+        CCSprite *background = [CCSprite spriteWithFile:@"game_background.png" rect:CGRectMake(0, 0, winSize.width, winSize.height)];
+        
+        background.position = CGPointMake(winSize.width/2, winSize.height/2);
+        [self addChild:background z:0];
+        
          _highScoreTableView = [[UITableView alloc] initWithFrame:CGRectMake(margin,0,[[CCDirector sharedDirector] winSize].width - 2*margin,[[CCDirector sharedDirector] winSize].height) style:UITableViewStylePlain];
         // Set TableView Attributes
         _highScoreTableView.backgroundColor = [UIColor clearColor];
@@ -36,10 +44,10 @@
         _highScoreTableView.delegate = self;
         _highScoreTableView.opaque = YES;
         
-        _backButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, margin, [[CCDirector sharedDirector] winSize].height)];
+        _backButton = [[UIButton alloc] initWithFrame:CGRectMake( 0 , [[CCDirector sharedDirector] winSize].height/2, 40, 40)];
         [_backButton addTarget:self action:@selector(backToGameMenu) forControlEvents:UIControlEventTouchUpInside];
-        [_backButton setTintColor:[UIColor redColor]];
-        [_backButton setBackgroundColor:[UIColor redColor]];
+        [_backButton setImage:[UIImage imageNamed:@"back.png"] forState:UIControlStateNormal];
+        [_backButton setImage:[UIImage imageNamed:@"back_Sel.png"] forState:UIControlStateNormal];
         
         // Add View To Scene
         [[[CCDirector sharedDirector] view] addSubview:_highScoreTableView];
@@ -49,7 +57,7 @@
 }
 
 -(void)backToGameMenu {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1 scene:[GamePlayLayer scene] withColor:ccWHITE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[IntroLayer scene] withColor:ccBLACK]];
     [_highScoreTableView removeFromSuperview];
     [_backButton removeFromSuperview];
 }

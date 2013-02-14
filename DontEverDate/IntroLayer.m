@@ -44,10 +44,10 @@
 	CCSprite *background;
 	
 	if( UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone ) {
-		background = [CCSprite spriteWithFile:@"Default.png"];
-		background.rotation = 90;
+		background = [CCSprite spriteWithFile:@"splash.png"];
+		background.rotation = 0;
 	} else {
-		background = [CCSprite spriteWithFile:@"Default-Landscape~ipad.png"];
+		background = [CCSprite spriteWithFile:@"splash.png"];
 	}
 	background.position = ccp(size.width/2, size.height/2);
 
@@ -59,28 +59,28 @@
 
 -(void) makeTransition:(ccTime)dt
 {
-	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:dt scene:[GamePlayLayer scene] withColor:ccWHITE]];
+	[[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:dt scene:[GamePlayLayer scene] withColor:ccBLACK]];
 }
 
 -(void)play {
-    [self makeTransition:1];
+    [self makeTransition:2];
 }
 
 -(void)showHighScoresMenu {
-    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:1 scene:[HighScoresLayer scene] withColor:ccWHITE]];
+    [[CCDirector sharedDirector] replaceScene:[CCTransitionFade transitionWithDuration:2 scene:[HighScoresLayer scene] withColor:ccBLACK]];
 }
 
 -(void)addGameNavigationButtonsToLayer {
-    CCMenuItem *play = [CCMenuItemImage itemWithNormalImage:@"Button1.png" selectedImage:@"Button1Sel.png" target:self selector:@selector(play)];
-    play.position = ccp(60, 30);
+    CCMenuItem *play = [CCMenuItemImage itemWithNormalImage:@"play.png" selectedImage:@"play_Sel.png" target:self selector:@selector(play)];
+    play.position = ccp(215, 45);
     CCMenu *playMenu = [CCMenu menuWithItems:play, nil];
-    playMenu.position = ccp(60,30);
+    playMenu.position = ccp(215, 45);
     [self addChild:playMenu];
     
-    CCMenuItem *showHighScores = [CCMenuItemImage itemWithNormalImage:@"Button2.png" selectedImage:@"Button2Sel.png" target:self selector:@selector(showHighScoresMenu)];
-    showHighScores.position = ccp(180, 30);
+    CCMenuItem *showHighScores = [CCMenuItemImage itemWithNormalImage:@"highscores.png" selectedImage:@"highscores_Sel.png" target:self selector:@selector(showHighScoresMenu)];
+    showHighScores.position = ccp(215, 15);
     CCMenu *showHighScoresMenu = [CCMenu menuWithItems:showHighScores, nil];
-    showHighScoresMenu.position = ccp(180,30);
+    showHighScoresMenu.position = ccp(215, 15);
     [self addChild:showHighScoresMenu];
 }
 @end
