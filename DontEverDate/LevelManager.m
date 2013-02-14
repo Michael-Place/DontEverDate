@@ -38,6 +38,10 @@
     return _levels[_curLevelIdx];
 }
 
+- (int)curLevelNumber {
+    return _curLevelIdx;
+}
+
 - (void)nextLevel {
     _curLevelIdx++;
 }

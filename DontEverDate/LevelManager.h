@@ -13,6 +13,7 @@
 
 + (LevelManager *)sharedInstance;
 - (Level *)curLevel;
+- (int)curLevelNumber;
 - (void)nextLevel;
 - (void)reset;
 
