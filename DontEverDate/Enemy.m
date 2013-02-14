@@ -26,7 +26,7 @@
 }
 -(void)calculateAdjustedActionCoolDown{
     
-    self.adjustedActionCoolDown = self.currentActionCoolDown / 3000;
+    self.adjustedActionCoolDown = self.currentActionCoolDown * 10;
     
 }
 @end
@@ -36,7 +36,7 @@
 - (id)init {
     if ((self = [super initWithFile:@"Cupid.png" hp:1 minMoveDuration:3 maxMoveDuration:5])) {
        
-        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0],[NSNumber numberWithFloat:7.0], [NSNumber numberWithFloat:9.0], [NSNumber numberWithFloat:3.0], [NSNumber numberWithFloat:0.5], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
+        self.actionCoolDown = [[NSMutableDictionary alloc]initWithObjects:[NSArray arrayWithObjects:[NSNumber numberWithFloat:5.0],[NSNumber numberWithFloat:7.0], [NSNumber numberWithFloat:18.0], [NSNumber numberWithFloat:300.0], [NSNumber numberWithFloat:0.5], nil] forKeys:[NSArray arrayWithObjects:[NSNumber numberWithInt:wander],[NSNumber numberWithInt:seek], [NSNumber numberWithInt:flee], [NSNumber numberWithInt:fire], [NSNumber numberWithInt:tired], nil]];
         
     }
     return self;
