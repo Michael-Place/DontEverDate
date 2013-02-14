@@ -20,6 +20,7 @@
 @implementation GamePlayLayer
 @synthesize walkAction = _walkAction;
 @synthesize moveAction = _moveAction;
+@synthesize kickAction = _kickAction;
 static CGRect screenRect;
 
 // Helper class method that creates a Scene with the GamePlayLayer as the only child.
@@ -110,6 +111,7 @@ static CGRect screenRect;
         [self addChild:background z:0];
         
         [self setUpWalkAction];
+        [self setUpKickAction];
         
         _player = [[Player alloc] initWithFile:@"mary_finish.png" hp:20];
         _player.position = ccp(_player.contentSize.width/2, winSize.height/2);
@@ -127,6 +129,31 @@ static CGRect screenRect;
         
     }
     return self;
+}
+
+- (void)setUpKickAction {
+    CCTexture2D *texture;
+    CGSize textureSize;
+    CGRect textureRect;
+    CCSpriteFrame *spriteFrame;
+    NSMutableArray *animationFrames = [NSMutableArray arrayWithCapacity:2];
+    
+    // Repeat block of code below
+    texture = [[CCTextureCache sharedTextureCache] addImage:@"mary_kick_1.png"];
+    textureSize = [texture contentSize];
+    textureRect = CGRectMake(0, 0, textureSize.width, textureSize.height);
+    spriteFrame = [CCSpriteFrame frameWithTexture:texture rect:textureRect];
+    [animationFrames addObject:spriteFrame];
+    
+    texture = [[CCTextureCache sharedTextureCache] addImage:@"mary_kick_2.png"];
+    textureSize = [texture contentSize];
+    textureRect = CGRectMake(0, 0, textureSize.width, textureSize.height);
+    spriteFrame = [CCSpriteFrame frameWithTexture:texture rect:textureRect];
+    [animationFrames addObject:spriteFrame];
+    
+    CCAnimation *animation = [CCAnimation  animationWithFrames:animationFrames delay:.15];
+    self.kickAction = [CCAnimate actionWithAnimation:animation restoreOriginalFrame:YES];
+//    self.walkAction = [CCRepeatForever actionWithAction:animate];
 }
 
 - (void)setUpWalkAction {
@@ -216,6 +243,11 @@ static CGRect screenRect;
             e.hp --;
             if (e.hp <= 0) {
                 [enemiesToDelete addObject:e];
+                [_player stopAction:self.moveAction];
+                [_player stopAction:self.walkAction];
+                _moving = NO;
+                [_player runAction:self.kickAction];
+//              [_player runAction:self.kickAction];
             }
             break;
         }

@@ -31,11 +31,13 @@
     CCSprite *_nextProjectile;
     CCAction *_moveAction;
     CCAction *_walkAction;
+    CCAction *_kickAction;
     BOOL _moving;
 }
 
 @property (nonatomic, retain) CCAction *moveAction;
 @property (nonatomic, retain) CCAction *walkAction;
+@property (nonatomic, retain) CCAction *kickAction;
 @property (nonatomic, retain) CCSprite *player;
 
 // returns a CCScene that contains the GamePlayLayer as the only child
