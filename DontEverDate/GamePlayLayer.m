@@ -283,9 +283,9 @@ static CGRect screenRect;
             
         }
         float distBetween = [[Auxiliary findDistanceFrom:e.position to:_player.position]floatValue];
-        if(distBetween  < 120.f) {
+        if(distBetween  < 130.f) {
             //Too close! Time to flee
-            speed = 1.2;
+            speed = 2;
             e.currentAction = flee;
             e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
             [e calculateAdjustedActionCoolDown];
@@ -309,7 +309,7 @@ static CGRect screenRect;
                 int selector = (int)[Auxiliary generateRandomBetween:1 andFinish:[e.actionCoolDown count]]%5+1;
                 switch (selector) {
                     case tired: {
-                        speed = 0.01;
+                        speed = 1;
                         e.targetLoc = e.position;
                         e.currentAction = tired;
                         e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
@@ -317,7 +317,7 @@ static CGRect screenRect;
                         break;
                     }
                     case fire: {
-                        speed = .2;
+                        speed = 1;
                         e.targetLoc = e.position;
                         e.currentAction = fire;
                         e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
@@ -332,7 +332,7 @@ static CGRect screenRect;
                         break;
                     }
                     case seek: {
-                        speed = .7;
+                        speed = 2;
                         e.targetLoc = _player.position;
                         e.currentAction = seek;
                         e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
@@ -341,7 +341,7 @@ static CGRect screenRect;
                     }
                         
                     default: {
-                        speed = .2;
+                        speed = .7;
                         e.targetLoc = e.position;
                         e.currentAction = fire;
                         e.currentActionCoolDown = [[e.actionCoolDown objectForKey: [NSNumber numberWithInt:e.currentAction]]intValue];
