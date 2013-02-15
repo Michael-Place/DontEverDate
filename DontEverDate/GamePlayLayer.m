@@ -246,7 +246,9 @@ static CGRect screenRect;
                 [_player stopAction:self.moveAction];
                 [_player stopAction:self.walkAction];
                 _moving = NO;
-                [_player runAction:self.kickAction];
+                if ([_player numberOfRunningActions] ==0) {
+                    [_player runAction:self.kickAction];
+                }
 //              [_player runAction:self.kickAction];
             }
             break;

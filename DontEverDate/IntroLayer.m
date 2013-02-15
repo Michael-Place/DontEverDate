@@ -16,6 +16,7 @@
 #pragma mark - IntroLayer
 
 @implementation IntroLayer
+@synthesize howToButton = _howToButton;
 
 // Helper class method that creates a Scene with the GamePlayLayer as the only child.
 +(CCScene *) scene
@@ -82,5 +83,31 @@
     CCMenu *showHighScoresMenu = [CCMenu menuWithItems:showHighScores, nil];
     showHighScoresMenu.position = ccp(215, 15);
     [self addChild:showHighScoresMenu];
+    
+    [self presentHowTo];
+    
 }
+
+-(void)presentHowTo {
+    CGSize size = [[CCDirector sharedDirector] winSize];
+    self.howToButton = [[UIButton alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
+    
+    [self.howToButton setImage:[UIImage imageNamed:@"howto.png"] forState:UIControlStateNormal];
+    [self.howToButton setImage:[UIImage imageNamed:@"howto.png"] forState:UIControlStateSelected];
+    [self.howToButton setAdjustsImageWhenHighlighted:NO];
+    [self.howToButton addTarget:self action:@selector(dismissHowTo) forControlEvents:UIControlEventTouchUpInside];
+    [[[CCDirector sharedDirector] view] addSubview:self.howToButton];
+    [[[CCDirector sharedDirector] view] bringSubviewToFront:self.howToButton];
+    
+}
+
+-(void)dismissHowTo {
+    [UIView animateWithDuration:2 animations:^{
+        [self.howToButton setAlpha:0];
+//        [self.howToButton removeFromSuperview];
+    }];
+    
+
+}
+
 @end

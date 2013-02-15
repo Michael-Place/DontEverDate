@@ -12,7 +12,10 @@
 
 @interface IntroLayer : CCLayer
 {
+    UIButton *_howToButton;
 }
+
+@property (nonatomic, retain) UIButton *howToButton;
 
 // returns a CCScene that contains the GamePlayLayer as the only child
 +(CCScene *) scene;

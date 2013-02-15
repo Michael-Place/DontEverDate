@@ -31,8 +31,6 @@
 		E901EF2116BF38C8005CB026 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF2016BF38C8005CB026 /* Foundation.framework */; };
 		E901EF2316BF38C8005CB026 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF2216BF38C8005CB026 /* CoreGraphics.framework */; };
 		E901EF2516BF38C8005CB026 /* GameKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E901EF2416BF38C8005CB026 /* GameKit.framework */; };
-		E901EF2916BF38C8005CB026 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E901EF2816BF38C8005CB026 /* Default.png */; };
-		E901EF2B16BF38C8005CB026 /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */; };
 		E901EF2D16BF38C8005CB026 /* fps_images.png in Resources */ = {isa = PBXBuildFile; fileRef = E901EF2C16BF38C8005CB026 /* fps_images.png */; };
 		E901EF2F16BF38C8005CB026 /* fps_images-hd.png in Resources */ = {isa = PBXBuildFile; fileRef = E901EF2E16BF38C8005CB026 /* fps_images-hd.png */; };
 		E901EF3116BF38C8005CB026 /* fps_images-ipadhd.png in Resources */ = {isa = PBXBuildFile; fileRef = E901EF3016BF38C8005CB026 /* fps_images-ipadhd.png */; };
@@ -177,6 +175,10 @@
 		E913BBA616CD991B0018008E /* cupid_taunt_1.png in Resources */ = {isa = PBXBuildFile; fileRef = E913BBA316CD991B0018008E /* cupid_taunt_1.png */; };
 		E913BBA716CD991B0018008E /* cupid_taunt_2.png in Resources */ = {isa = PBXBuildFile; fileRef = E913BBA416CD991B0018008E /* cupid_taunt_2.png */; };
 		E913BBA816CD991B0018008E /* cupid_taunt_3.png in Resources */ = {isa = PBXBuildFile; fileRef = E913BBA516CD991B0018008E /* cupid_taunt_3.png */; };
+		E953348D16CDB9DF00E3947E /* Default-Landscape~ipad.png in Resources */ = {isa = PBXBuildFile; fileRef = E953348B16CDB9DF00E3947E /* Default-Landscape~ipad.png */; };
+		E953348E16CDB9DF00E3947E /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = E953348C16CDB9DF00E3947E /* Default.png */; };
+		E953349016CDBA0700E3947E /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E953348F16CDBA0700E3947E /* Default@2x.png */; };
+		E953349216CDBAF200E3947E /* howto.png in Resources */ = {isa = PBXBuildFile; fileRef = E953349116CDBAF200E3947E /* howto.png */; };
 		E95E37F616CD76E40035CA4F /* UIColor+UIColor_Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = E95E37F516CD76E40035CA4F /* UIColor+UIColor_Helper.m */; };
 		E95E37F916CD7B000035CA4F /* back_Sel.png in Resources */ = {isa = PBXBuildFile; fileRef = E95E37F716CD7B000035CA4F /* back_Sel.png */; };
 		E95E37FA16CD7B000035CA4F /* back.png in Resources */ = {isa = PBXBuildFile; fileRef = E95E37F816CD7B000035CA4F /* back.png */; };
@@ -213,8 +215,6 @@
 		E901EF2016BF38C8005CB026 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		E901EF2216BF38C8005CB026 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
 		E901EF2416BF38C8005CB026 /* GameKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = GameKit.framework; path = System/Library/Frameworks/GameKit.framework; sourceTree = SDKROOT; };
-		E901EF2816BF38C8005CB026 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = Default.png; path = Resources/Default.png; sourceTree = "<group>"; };
-		E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "Default-Landscape~ipad.png"; path = "Resources/Default-Landscape~ipad.png"; sourceTree = "<group>"; };
 		E901EF2C16BF38C8005CB026 /* fps_images.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = fps_images.png; path = Resources/fps_images.png; sourceTree = "<group>"; };
 		E901EF2E16BF38C8005CB026 /* fps_images-hd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-hd.png"; path = "Resources/fps_images-hd.png"; sourceTree = "<group>"; };
 		E901EF3016BF38C8005CB026 /* fps_images-ipadhd.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "fps_images-ipadhd.png"; path = "Resources/fps_images-ipadhd.png"; sourceTree = "<group>"; };
@@ -499,6 +499,10 @@
 		E913BBA316CD991B0018008E /* cupid_taunt_1.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_taunt_1.png; sourceTree = "<group>"; };
 		E913BBA416CD991B0018008E /* cupid_taunt_2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_taunt_2.png; sourceTree = "<group>"; };
 		E913BBA516CD991B0018008E /* cupid_taunt_3.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = cupid_taunt_3.png; sourceTree = "<group>"; };
+		E953348B16CDB9DF00E3947E /* Default-Landscape~ipad.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-Landscape~ipad.png"; sourceTree = "<group>"; };
+		E953348C16CDB9DF00E3947E /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
+		E953348F16CDBA0700E3947E /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
+		E953349116CDBAF200E3947E /* howto.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = howto.png; path = ../../../Desktop/howto.png; sourceTree = "<group>"; };
 		E95E37F416CD76E40035CA4F /* UIColor+UIColor_Helper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+UIColor_Helper.h"; sourceTree = "<group>"; };
 		E95E37F516CD76E40035CA4F /* UIColor+UIColor_Helper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+UIColor_Helper.m"; sourceTree = "<group>"; };
 		E95E37F716CD7B000035CA4F /* back_Sel.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = back_Sel.png; sourceTree = "<group>"; };
@@ -533,6 +537,7 @@
 		E901EF0816BF38C8005CB026 = {
 			isa = PBXGroup;
 			children = (
+				E953348F16CDBA0700E3947E /* Default@2x.png */,
 				E901096416C6105D0023B811 /* Default-568h@2x.png */,
 				E901EF2616BF38C8005CB026 /* DontEverDate */,
 				E901EF1316BF38C8005CB026 /* Frameworks */,
@@ -981,7 +986,6 @@
 			isa = PBXGroup;
 			children = (
 				E98D76AD16CD40A9008E9F1E /* Projectile.png */,
-				E901BDF316CCC7290061A22E /* game_background.png */,
 			);
 			name = "Game Items";
 			sourceTree = "<group>";
@@ -1017,6 +1021,10 @@
 		E901F0CD16BF4D2E005CB026 /* App Resources */ = {
 			isa = PBXGroup;
 			children = (
+				E953349116CDBAF200E3947E /* howto.png */,
+				E953348B16CDB9DF00E3947E /* Default-Landscape~ipad.png */,
+				E953348C16CDB9DF00E3947E /* Default.png */,
+				E901BDF316CCC7290061A22E /* game_background.png */,
 				E913BB9316CD8C160018008E /* win_anim.png */,
 				E913BB9416CD8C160018008E /* win_no_anim.png */,
 				E913BB9516CD8C160018008E /* lose_no_anim.png */,
@@ -1036,8 +1044,6 @@
 				E901095516C5E54C0023B811 /* Button1Sel.png */,
 				E901095616C5E54C0023B811 /* Button2.png */,
 				E901095716C5E54C0023B811 /* Button2Sel.png */,
-				E901EF2816BF38C8005CB026 /* Default.png */,
-				E901EF2A16BF38C8005CB026 /* Default-Landscape~ipad.png */,
 				E901EF2C16BF38C8005CB026 /* fps_images.png */,
 				E901EF2E16BF38C8005CB026 /* fps_images-hd.png */,
 				E901EF3016BF38C8005CB026 /* fps_images-ipadhd.png */,
@@ -1108,8 +1114,6 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				E901EF2916BF38C8005CB026 /* Default.png in Resources */,
-				E901EF2B16BF38C8005CB026 /* Default-Landscape~ipad.png in Resources */,
 				E901EF2D16BF38C8005CB026 /* fps_images.png in Resources */,
 				E901EF2F16BF38C8005CB026 /* fps_images-hd.png in Resources */,
 				E901EF3116BF38C8005CB026 /* fps_images-ipadhd.png in Resources */,
@@ -1161,6 +1165,10 @@
 				E913BBA616CD991B0018008E /* cupid_taunt_1.png in Resources */,
 				E913BBA716CD991B0018008E /* cupid_taunt_2.png in Resources */,
 				E913BBA816CD991B0018008E /* cupid_taunt_3.png in Resources */,
+				E953348D16CDB9DF00E3947E /* Default-Landscape~ipad.png in Resources */,
+				E953348E16CDB9DF00E3947E /* Default.png in Resources */,
+				E953349016CDBA0700E3947E /* Default@2x.png in Resources */,
+				E953349216CDBAF200E3947E /* howto.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
